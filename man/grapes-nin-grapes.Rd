@@ -21,8 +21,7 @@ Evaluates whether the left hand side argument is not in the right hand side argu
 The \code{\%nin\%} function negates the \code{\%in\%} operator.
 }
 \examples{
-\dontrun{
-c(1,2,3) \%nin\% c(1,2)}
+c(1,2,3) \%nin\% c(1,2)
 }
 \author{
 Mathijs Deen
