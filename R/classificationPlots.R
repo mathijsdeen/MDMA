@@ -15,7 +15,7 @@
 #' @return \code{classificationplots} returns three plots, and invisibly a dataframe containing sensitivities and specificities at all available threshold values.
 #' @examples
 #' library(pROC)
-#' classificationplots(aSAH$s100b,aSAH$group,levels=c("Good","Poor"))
+#' classificationplots(aSAH$s100b,aSAH$outcome,levels=c("Good","Poor"))
 #' @author Mathijs Deen
 #' @import pROC
 #' @importFrom graphics abline legend lines par points text
