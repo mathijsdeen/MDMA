@@ -9,6 +9,7 @@ Description: Provides a variety of functions useful for data analysis,
 Depends: 
     R (>= 4.2),
     stats,
+    MASS,
     graphics,
     pROC
 License: GPL-3 + file LICENSE
