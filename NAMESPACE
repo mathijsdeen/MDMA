@@ -3,6 +3,7 @@
 export("%nin%")
 export(classificationplots)
 export(coefsLogReg)
+export(corList)
 export(dPPC2)
 export(frequencies)
 export(rci)
