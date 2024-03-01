@@ -1,4 +1,4 @@
-#' @title \%nin\% function
+#' @title %nin% function
 #' @description Evaluates whether the left hand side argument is not in the right hand side argument.
 #' @param lhs left hand side
 #' @param rhs right hand side
