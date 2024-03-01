@@ -3,6 +3,7 @@
 export("%nin%")
 export(classificationplots)
 export(coefsLogReg)
+export(frequencies)
 import(MASS)
 import(pROC)
 importFrom(graphics,abline)
