@@ -46,7 +46,7 @@ if you are performing an independent samples t-test).}
 \item{conf.level}{level of the confidence interval.}
 }
 \value{
-\code{corList} returns a list of correlations
+\code{tTest} performs a t-test (independent samples, paired samples, one sample) just like base-R t.test, but with the extended possibility to enter group statistics instead of raw data.
 }
 \description{
 perform t tests with the possibility of inputting group statistics

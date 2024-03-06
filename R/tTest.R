@@ -15,7 +15,7 @@
 #' @param var.equal a logical variable indicating whether to treat the two variances as being equal. If
 #'     \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used.
 #' @param conf.level level of the confidence interval.
-#' @return \code{corList} returns a list of correlations
+#' @return \code{tTest} performs a t-test (independent samples, paired samples, one sample) just like base-R t.test, but with the extended possibility to enter group statistics instead of raw data.
 #' @importFrom stats pt qt complete.cases setNames
 #' @examples \dontrun{
 #' library(MASS)
