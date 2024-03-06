@@ -21,7 +21,7 @@
 #' @importFrom graphics abline legend lines par points text
 #' @importFrom stats density
 #' @export
-classificationplots <- function(response, group, levels, cutoffs.1=NULL,
+classificationPlots <- function(response, group, levels, cutoffs.1=NULL,
                                 cutoffs.2=NULL, cutoffs.3=NULL,
                                 xlab.3="Predicted probability",
                                 labels.3=NULL, xlim.3=NULL,
