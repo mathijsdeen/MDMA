@@ -8,10 +8,11 @@ classificationPlots(
   response,
   group,
   levels,
+  state,
   cutoffs.1 = NULL,
   cutoffs.2 = NULL,
   cutoffs.3 = NULL,
-  xlab.3 = "Predicted probability",
+  xlab.3 = NULL,
   labels.3 = NULL,
   xlim.3 = NULL,
   ylim.3 = c(0, 10),
@@ -25,6 +26,8 @@ classificationPlots(
 \item{group}{grouping variable}
 
 \item{levels}{levels of the grouping variable that are to be classified (should be of length 2)}
+
+\item{state}{state level of group variable}
 
 \item{cutoffs.1}{cutoff values to be shown in the ROC curve}
 
@@ -51,8 +54,9 @@ classificationPlots(
 Generate plots for classification of two groups given one continuous variable
 }
 \examples{
+\dontrun{
 library(pROC)
-classificationPlots(aSAH$s100b,aSAH$outcome,levels=c("Good","Poor"))
+classificationPlots(aSAH$s100b,aSAH$outcome,levels=c("Good","Poor"))}
 }
 \author{
 Mathijs Deen
