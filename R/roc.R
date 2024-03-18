@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples\dontrun{
-#' x <- 1'}
+#' x <- 1}
 roc <- function(response, group, levels, state) {
   obs <- group[group %in% levels]
   data <- na.omit(data.frame(response, obs))
@@ -30,7 +30,9 @@ roc <- function(response, group, levels, state) {
   rdf <- data.frame("thresholds"    = thresholds,
                     "sensitivities" = sensitivities,
                     "specificities" = specificities)
-  outlist <- list(data = data, rdf = rdf, auc = as.numeric(auc))
-  class(outlist) <- "rocc"
+  outlist <- list(data = data, rdf = rdf, auc = as.numeric(auc),
+                  response = response, group = group, levels = levels,
+                  state = state)
+  class(outlist) <- "roc"
   return(outlist)
 }

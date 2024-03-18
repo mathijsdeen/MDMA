@@ -21,3 +21,7 @@ blaat
 \description{
 Receiver operator characteristic
 }
+\examples{
+\dontrun{
+x <- 1}
+}
