@@ -59,6 +59,8 @@ sloop::s3_methods_class("roc")
 
 detach("package:mdma", unload=TRUE)
 library(mdma)
+
+#creation of QIDS data
 set.seed(4)
 n <- 100
 QIDS <- round(MASS::mvrnorm(n = n, mu = 14.5, Sigma = matrix(25)), 0)
@@ -71,6 +73,16 @@ depression <- rep(NA, n)
 depression[depressed==TRUE] <- "Yes"
 depression[depressed==FALSE] <- "No"
 depression <- as.factor(depression)
-mdma::roc(QIDS, depression, c("Yes","No"), "Yes")
+a <- roc(QIDS$QIDS, QIDS$depression, c("Yes","No"), "Yes")
+plot(a, ylim.3 = c(0,.2), xlab.3= "hoi", cutoffs.1 = 14.5, cutoffs.2 = 14.5, cutoffs.3 = 14.5)
 mdma::classificationPlots(QIDS, depression, c("Yes","No"), "Yes")
 rm(roc)
+sloop::s3_methods_class("roc")
+QIDS <- data.frame(QIDS, depression)
+save(QIDS, file='data/QIDS.rda')
+
+p <- load("data/QIDS.rda")
+rm (p)
+
+rm(QIDS)
+QIDS
