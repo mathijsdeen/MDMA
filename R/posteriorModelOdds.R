@@ -24,7 +24,7 @@ posteriorModelOdds <- function(...){
   lowestBIC <- min(BICs)
   relBICs <- BICs - lowestBIC
   pMO <- exp(-1/2 * relBICs)/sum(exp(-1/2 * relBICs))
-  res <- cbind(pMO)
+  res <- cbind(BIC = BICs, pMO)
   rownames(res) <- formulae
   return(res)
 }
