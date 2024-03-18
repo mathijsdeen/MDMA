@@ -8,7 +8,7 @@
 #' @return blaat
 #' @export
 #'
-#' @examples\dontrun{
+#' @examples \dontrun{
 #' x <- 1}
 roc <- function(response, group, levels, state) {
   obs <- group[group %in% levels]
