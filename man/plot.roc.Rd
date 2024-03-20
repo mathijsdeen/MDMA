@@ -8,6 +8,8 @@
   x,
   y,
   ...,
+  which = 1:3,
+  orientation = c("horizontal", "vertical"),
   cutoffs.1 = NULL,
   cutoffs.2 = NULL,
   cutoffs.3 = NULL,
@@ -25,6 +27,11 @@
 \item{y}{argument for generic \code{plot} function, not used here.}
 
 \item{...}{other arguments for generic \code{plot} function, none are used here.}
+
+\item{which}{which plots to show (see Details).}
+
+\item{orientation}{indicate whether the plots should be arranged horizontally
+or vertically.}
 
 \item{cutoffs.1}{cutoff value(s) to be shown in the first plot}
 
