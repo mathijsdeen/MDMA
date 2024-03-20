@@ -2,6 +2,8 @@
 
 S3method(auc,roc)
 S3method(plot,roc)
+S3method(print,tTest)
+S3method(summary,tTest)
 export("%ni%")
 export(auc)
 export(classificationPlots)
