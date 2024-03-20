@@ -144,7 +144,7 @@ tTest <- function(x,
                stderr = stderr,
                alternative = alternative,
                method = method, data.name = dname)
-  class(rval) <- "htest"
+  class(rval) <- c("tTest", "htest")
   return(rval)
 }
 
