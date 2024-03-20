@@ -5,18 +5,22 @@
 \alias{auc.roc}
 \title{Area under the curve}
 \usage{
-auc(x)
+auc(x, ...)
 
-\method{auc}{roc}(x)
+\method{auc}{roc}(x, ...)
 }
 \arguments{
 \item{x}{object of class \code{roc}.}
+
+\item{...}{other arguments (none are used at the moment).}
 }
 \value{
 returns the area under the curve for a \code{roc} class object.
 }
 \description{
-Area under the curve
+Calculate the area under the curve
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 a <- roc(QIDS$QIDS, QIDS$depression, c("Yes","No"), "Yes")
