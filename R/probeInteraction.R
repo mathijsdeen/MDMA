@@ -1,5 +1,7 @@
 #' @title Probe interaction models
 #' @description Probe the effect of a moderator on an X/antecedent variable in a linear model.
+#'
+#' `r lifecycle::badge("experimental")`
 #' @param object describe parameter
 #' @param antecedent describe parameter
 #' @param moderator describe parameter

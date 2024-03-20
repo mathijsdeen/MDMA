@@ -1,5 +1,7 @@
 #' @title Reliable change index
 #' @description computes the reliable change index according to Jacobson and Truax (1992).
+#'
+#' `r lifecycle::badge("stable")`
 #' @param x1 prescore
 #' @param x2 postscore, same length as \code{x1}
 #' @param rxx internal consistency statistic

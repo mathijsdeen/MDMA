@@ -18,6 +18,8 @@ rci(x1, x2, rxx)
 }
 \description{
 computes the reliable change index according to Jacobson and Truax (1992).
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

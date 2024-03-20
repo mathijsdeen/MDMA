@@ -1,5 +1,7 @@
 #' @title Posterior model odds
 #' @description Calculate the posterior model odds for a set of models
+#'
+#' `r lifecycle::badge("stable")`
 #' @param ... objects of class \code{(g)lm}, given as separate arguments
 #' @return \code{posteriorModelOdds} returns to posterior model odds for the models provided.
 #' @details

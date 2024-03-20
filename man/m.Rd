@@ -15,6 +15,8 @@ a matrix, the matrix dimensions are preserved.
 }
 \description{
 Mean center a vector or numeric matrix
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 This function resembles \code{base::scale.default}, with the \code{scale}

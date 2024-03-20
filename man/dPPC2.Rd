@@ -30,6 +30,8 @@ dPPC2(preT, posT, preC, posC, correct = TRUE, CIlevel = 0.95)
 }
 \description{
 calculates an effect size for studies with pretest and posttest scores for two groups, usually a treatment and a control group. It is based on Morris (2008), who based it on Becker (1988).
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

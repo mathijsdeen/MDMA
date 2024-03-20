@@ -16,6 +16,8 @@ The function returns a vector of the same length as \code{lhs}.
 }
 \description{
 Evaluates whether the left hand side argument is not in the right hand side argument.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 The \code{\%ni\%} function negates the \code{\%in\%} operator.

@@ -39,6 +39,8 @@ standard errors, t values, p values and a confidence interval.
 }
 \description{
 Probe the effect of a moderator on an X/antecedent variable in a linear model.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 lm.1 <- lm(mpg ~ hp * wt, data = mtcars)

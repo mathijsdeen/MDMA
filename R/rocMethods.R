@@ -1,4 +1,7 @@
 #' @title plot roc curve
+#' @description Plot an ROC curve
+#'
+#' `r lifecycle::badge("stable")`
 #' @param x object of class \code{roc}.
 #' @param y argument for generic \code{plot} function, not used here.
 #' @param ... other arguments for generic \code{plot} function, none are used here.

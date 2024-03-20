@@ -17,4 +17,6 @@ QIDS
 \description{
 The \code{QIDS} dataframe consists of 100 observations of people that were
 clinically diagnosed with a major depressive disorder and who filled out the QIDS-SR questionnaire. The data were simulated.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

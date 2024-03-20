@@ -14,6 +14,8 @@ object of type \code{data.frame} containing frequencies, percentages and cumulat
 }
 \description{
 Display frequency table with percentages and cumulative percentages
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

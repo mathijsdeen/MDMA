@@ -16,6 +16,8 @@ corList(x, ...)
 }
 \description{
 List all correlations in a correlation matrix without duplicates
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

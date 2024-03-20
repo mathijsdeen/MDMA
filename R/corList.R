@@ -1,5 +1,7 @@
 #' @title List of correlation coefficients
 #' @description List all correlations in a correlation matrix without duplicates
+#'
+#' `r lifecycle::badge("stable")`
 #' @param x a numeric vector, matrix or data frame
 #' @param ... arguments passed to the \code{cor} function.
 #' @return \code{corList} returns a list of correlations

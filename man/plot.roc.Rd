@@ -61,7 +61,9 @@ for all threshold values.
 }
 }
 \description{
-plot roc curve
+Plot an ROC curve
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 a <- roc(QIDS$QIDS, QIDS$depression, c("Yes","No"), "Yes")

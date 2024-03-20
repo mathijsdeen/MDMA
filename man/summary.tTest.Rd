@@ -2,7 +2,7 @@
 % Please edit documentation in R/tTestMethods.R
 \name{summary.tTest}
 \alias{summary.tTest}
-\title{Summarize outcome of a t-test}
+\title{Summarize outcome of a t test}
 \usage{
 \method{summary}{tTest}(object, ..., rnd = 3L)
 }
@@ -19,7 +19,9 @@ gives the rounding values for the three statistics respectively.}
 \code{summary.htest} returns a typical APA-like output (without italics) for a t-test.
 }
 \description{
-Summarize outcome of a t-test
+Summarize the outcome of a t test
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 x1 <- QIDS$QIDS[QIDS$depression == "Yes"]

@@ -1,5 +1,7 @@
 #' @title Effect sizes from pretest-posttest-control group designs
 #' @description calculates an effect size for studies with pretest and posttest scores for two groups, usually a treatment and a control group. It is based on Morris (2008), who based it on Becker (1988).
+#'
+#' `r lifecycle::badge("stable")`
 #' @param preT pre-scores for treatment group
 #' @param posT post-scores for treatment group
 #' @param preC pre-scores for control group

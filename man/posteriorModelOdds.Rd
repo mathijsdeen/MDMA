@@ -14,6 +14,8 @@ posteriorModelOdds(...)
 }
 \description{
 Calculate the posterior model odds for a set of models
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 Posterior model odds are calculated for every model \eqn{i} as \deqn{\mathrm{pMO}_i = \frac{\mathrm{exp}\Big[-\frac{1}{2}\Delta_i\mathrm{BIC}\Big]}{\sum_{j = 1}^K\mathrm{exp}\Big[-\frac{1}{2}\Delta_j\mathrm{BIC}\Big]},}

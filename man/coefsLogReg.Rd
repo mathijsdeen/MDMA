@@ -18,6 +18,8 @@ coefsLogReg(model, confint = TRUE, level = 0.95)
 }
 \description{
 Show odds ratios and their confidence intervals for logistic regression parameter estimates
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

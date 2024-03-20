@@ -19,7 +19,9 @@ roc(response, group, levels, state)
 blaat
 }
 \description{
-Receiver operator characteristic
+Calculate ROC
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

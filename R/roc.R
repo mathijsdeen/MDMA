@@ -1,5 +1,7 @@
 #' @title Receiver operator characteristic
+#' @description Calculate ROC
 #'
+#' `r lifecycle::badge("stable")`
 #' @param response response variable
 #' @param group group variable
 #' @param levels level variable

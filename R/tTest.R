@@ -1,5 +1,7 @@
 #' @title t Test
 #' @description perform t tests with the possibility of inputting group statistics
+#'
+#' `r lifecycle::badge("stable")`
 #' @param x a numeric vector. Can be of length 1 for a group mean.
 #' @param y a numeric vector. Should be \code{NULL} for a one-sample t-test
 #' @param sdx standard deviation for \code{x}, when this reflects a group mean

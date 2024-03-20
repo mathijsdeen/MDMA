@@ -1,5 +1,7 @@
 #'@title Coefficients for logistic regression analysis
 #'@description Show odds ratios and their confidence intervals for logistic regression parameter estimates
+#'
+#' `r lifecycle::badge("stable")`
 #'@param model object of class \code{glm}, with family parameter set to \code{binomial}
 #'@param confint indicates whether a confidence interval for the odds ratio should be returned
 #'@param level the confidence level required

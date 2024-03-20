@@ -1,5 +1,7 @@
 #' @title %ni% function
 #' @description Evaluates whether the left hand side argument is not in the right hand side argument.
+#'
+#' `r lifecycle::badge("stable")`
 #' @param lhs left hand side
 #' @param rhs right hand side
 #' @return The function returns a vector of the same length as \code{lhs}.

@@ -50,6 +50,8 @@ if you are performing an independent samples t-test).}
 }
 \description{
 perform t tests with the possibility of inputting group statistics
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{
