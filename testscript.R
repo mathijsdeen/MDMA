@@ -77,7 +77,7 @@ a <- roc(QIDS$QIDS, QIDS$depression, c("Yes","No"), "Yes")
 plot(a, ylim.3 = c(0,.2), xlab.3= "hoi", cutoffs.1 = 14.5, cutoffs.2 = 14.5, cutoffs.3 = 14.5)
 mdma::classificationPlots(QIDS, depression, c("Yes","No"), "Yes")
 rm(roc)
-sloop::s3_methods_class("roc")
+sloop::s3_methods_class("htest")
 QIDS <- data.frame(QIDS, depression)
 save(QIDS, file='data/QIDS.rda')
 
@@ -86,3 +86,36 @@ rm (p)
 
 rm(QIDS)
 QIDS
+
+par()$mfrow
+par(mfrow=c(2,2))
+
+blaat <- function(x){
+  oldpar <- par(mfrow=c(1,3))
+  print(par()$mfrow)
+  print(oldpar)
+  on.exit(par(oldpar), add = TRUE)
+  print(par()$mfrow)
+  par(mfrow = c(1,3))
+  return(1)
+}
+
+blaat(3)
+par()$mfrow
+
+
+library(mdma)
+a <- roc(QIDS$QIDS, QIDS$depression, c("Yes","No"), "Yes")
+a
+plot(a, which = c(1,3), orientation = "vertical", ylim.3 = c(0,.2))
+tTest(QIDS$QIDS, QIDS$depression)
+class(QIDS$depression)
+t.test(QIDS$QIDS[QIDS$depression == "Yes"], QIDS$QIDS[QIDS$depression == "Yes"])
+tt <- tTest(QIDS$QIDS[QIDS$depression == "Yes"], QIDS$QIDS[QIDS$depression == "No"])
+summary(tt)
+
+x1 <- QIDS$QIDS[QIDS$depression == "Yes"]
+x2 <- QIDS$QIDS[QIDS$depression == "No"]
+tt <- tTest(x1, x2)
+summary(tt, rnd = c(1,2,3))
+print(tt)
