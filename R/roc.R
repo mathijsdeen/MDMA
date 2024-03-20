@@ -12,6 +12,7 @@
 #'
 #' @examples \dontrun{
 #' x <- 1}
+#' @author Mathijs Deen
 roc <- function(response, group, levels, state) {
   obs <- group[group %in% levels]
   data <- na.omit(data.frame(response, obs))

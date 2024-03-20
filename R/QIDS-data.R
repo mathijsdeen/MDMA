@@ -11,4 +11,5 @@
 #'  \item \code{Depression}: an indicator whether the individual was diagnosed with a depression or not.
 #' }
 #' @docType data
+#' @author Mathijs Deen
 NULL
