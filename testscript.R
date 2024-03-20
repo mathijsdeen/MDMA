@@ -60,6 +60,53 @@ sloop::s3_methods_class("roc")
 detach("package:mdma", unload=TRUE)
 library(mdma)
 
+lm.1 <- lm(mpg ~ hp, data = mtcars)
+lm.2 <- lm(mpg ~ hp + wt, data = mtcars)
+lm.3 <- lm(mpg ~ hp * wt, data = mtcars)
+lm.4 <- lm(mpg ~ hp * wt + am, data = mtcars)
+posteriorModelOdds(lm.1, lm.2, lm.3, lm.4) |> round(3)
+
+detach("package:mdma", unload = TRUE)
+detach("package:pROC", unload = TRUE)
+library(mdma)
+
+core <- c("ggplot2", "dplyr", "MASS")
+search <- paste0("package:",core)
+to_load <- core[!search %in% search()]
+to_load
+pkg <- to_load[1]
+if(pkg %in% loadedNamespaces()) dirname(getNamespaceInfo(pkg, "path"))
+loadedNamespaces()
+search()
+
+l <- if(3==2) 7
+l
+library(ggplot2)
+getNamespaceInfo("mdma", )
+lsNamespaceInfo <- function(ns, ...) {
+  ns <- asNamespace(ns, base.OK = FALSE)
+  ls(..., envir = get(".__NAMESPACE__.", envir = ns, inherits = FALSE))
+}
+allinfoNS <- function(ns) sapply(lsNamespaceInfo(ns), getNamespaceInfo, ns=ns)
+
+utils::str(allinfoNS("mdma")) |> View()
+core
+grep("^package:", search(), value=TRUE)
+envs <- purrr::set_names(grep("^package:", search(), value=TRUE))
+
+lapply(envs, function(x) ls(pos=x)) |> invert()
+
+invert <- function(x) {
+  if (length(x) == 0) return()
+  stacked <- utils::stack(x)
+  tapply(as.character(stacked$ind), stacked$values, list)
+}
+
+lapply(list(a=3,b=2), function(x) x+1) |> invert()
+??invert()
+
+installed.packages("mdma", priority = "high", fields = "License")
+
 #creation of QIDS data
 set.seed(4)
 n <- 100
