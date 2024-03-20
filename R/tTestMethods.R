@@ -42,7 +42,7 @@ summary.tTest <- function(object, ..., rnd = 3L){
   cat(sprintf(outf, x$parameter, x$statistic, pFinal))
 }
 
-#' @titlePrint t-test
+#' @title Print t-test
 #' @param x an object used to select a method
 #' @param ... further arguments passed to or from other methods
 #' @return prints the \code{tTest} object as a \code{htest} object.
