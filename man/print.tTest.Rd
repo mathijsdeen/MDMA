@@ -2,7 +2,7 @@
 % Please edit documentation in R/tTestMethods.R
 \name{print.tTest}
 \alias{print.tTest}
-\title{Print t-test}
+\title{Print t test}
 \usage{
 \method{print}{tTest}(x, ...)
 }
@@ -15,7 +15,9 @@
 prints the \code{tTest} object as a \code{htest} object.
 }
 \description{
-Print t-test
+Print the output of a t test
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 x1 <- QIDS$QIDS[QIDS$depression == "Yes"]

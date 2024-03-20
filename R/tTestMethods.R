@@ -44,7 +44,10 @@ summary.tTest <- function(object, ..., rnd = 3L){
   cat(sprintf(outf, x$parameter, x$statistic, pFinal))
 }
 
-#' @title Print t-test
+#' @title Print t test
+#' @description Print the output of a t test
+#'
+#' `r lifecycle::badge("stable")`
 #' @param x an object used to select a method
 #' @param ... further arguments passed to or from other methods
 #' @return prints the \code{tTest} object as a \code{htest} object.
