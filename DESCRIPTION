@@ -1,7 +1,7 @@
 Package: mdma
-Title: Mathijs Deens Miscellaneous Auxiliaries
-Date: 2024-02-29
-Version: 0.1.0
+Title: Mathijs Deen's Miscellaneous Auxiliaries
+Date: 2024-03-20
+Version: 0.2.0
 Author: Mathijs Deen
 Maintainer: Mathijs Deen <dev@mathijsdeen.com>
 Description: Provides a variety of functions useful for data analysis,
