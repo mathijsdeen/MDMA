@@ -27,6 +27,8 @@
 #' a <- roc(QIDS$QIDS, QIDS$depression, c("Yes","No"), "Yes")
 #' plot(a, ylim.3 = c(0,.2), xlab.3= "QIDS value", cutoffs.1 = 14.5,
 #'      cutoffs.2 = 14.5, cutoffs.3 = 14.5)
+#' @importFrom graphics abline legend lines par points text
+#' @importFrom stats density wilcox.test
 #' @author Mathijs Deen
 #' @export
 plot.roc <- function(x, y, ..., which = 1:3,
