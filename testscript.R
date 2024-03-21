@@ -64,7 +64,9 @@ lm.1 <- lm(mpg ~ hp, data = mtcars)
 lm.2 <- lm(mpg ~ hp + wt, data = mtcars)
 lm.3 <- lm(mpg ~ hp * wt, data = mtcars)
 lm.4 <- lm(mpg ~ hp * wt + am, data = mtcars)
-
+lm.5 <- t.test(QIDS$QIDS ~ QIDS$depression)
+QIDS
+probeInteraction(lm.5)
 pI <- probeInteraction(lm.3, hp, wt, n.interval.moderator = 35)
 probeInteraction(lm.3, hp, wt, n.interval.moderator = 35)
 
