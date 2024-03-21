@@ -2,12 +2,9 @@
 % Please edit documentation in R/rocMethods.R
 \name{auc}
 \alias{auc}
-\alias{auc.roc}
 \title{Area under the curve}
 \usage{
 auc(x, ...)
-
-\method{auc}{roc}(x, ...)
 }
 \arguments{
 \item{x}{object of class \code{roc}.}

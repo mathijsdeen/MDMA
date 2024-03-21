@@ -148,7 +148,6 @@ auc <- function(x, ...){
 }
 
 #' @export
-#' @rdname auc
 auc.roc <- function(x, ...){
   return(x$auc)
 }
