@@ -16,7 +16,9 @@
 \code{probeInteraction} object
 }
 \description{
-Print effects of probed interaction
+Print the effects from a probed interaction
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 lm.1 <- lm(mpg ~ hp * wt, data = mtcars)
