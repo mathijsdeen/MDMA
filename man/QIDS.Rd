@@ -20,3 +20,6 @@ clinically diagnosed with a major depressive disorder and who filled out the QID
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
+\author{
+Mathijs Deen
+}

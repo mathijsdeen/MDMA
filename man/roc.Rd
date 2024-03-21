@@ -27,3 +27,6 @@ Calculate ROC
 \dontrun{
 x <- 1}
 }
+\author{
+Mathijs Deen
+}
