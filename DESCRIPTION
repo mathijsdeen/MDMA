@@ -1,0 +1,19 @@
+Package: mdma
+Title: Mathijs Deen's Miscellaneous Auxiliaries
+Date: 2024-03-21
+Version: 0.3.0
+Author: Mathijs Deen
+Maintainer: Mathijs Deen <dev@mathijsdeen.com>
+Description: Provides a variety of functions useful for data analysis,
+    selection, manipulation, and graphics. 
+Depends: 
+    R (>= 4.2),
+    stats,
+    MASS,
+    graphics,
+    methods
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1
+Roxygen: list(markdown = TRUE)
