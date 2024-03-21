@@ -89,7 +89,10 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
   ULCI   <- effect + qnorm(1 - alpha/2) * SE
 
   # Create output
-  outframe   <- data.frame(Mvals, effect, SE, tvals, pvals, LLCI, ULCI)
-  names(outframe) <- c(names(B)[Mpos], "Effect", "se", "t", "p", "LLCI", "ULCI")
-  return(outframe)
+  effects <- data.frame(Mvals, effect, SE, tvals, pvals, LLCI, ULCI)
+  names(effects) <- c(names(B)[Mpos], "Effect", "se", "t", "p", "LLCI", "ULCI")
+  out <- list(effects = effects, data = object$model,
+              arguments = arguments, formula = object$call)
+  class(out) <- "probeInteraction"
+  return(out)
 }
