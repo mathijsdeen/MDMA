@@ -2,17 +2,20 @@
 #' @description Probe the effect of a moderator on an X/antecedent variable in a linear model.
 #'
 #' `r lifecycle::badge("experimental")`
-#' @param object describe parameter
-#' @param antecedent describe parameter
-#' @param moderator describe parameter
-#' @param alpha describe parameter
-#' @param JN describe parameter
-#' @param n.interval.moderator describe parameter
-#' @param quantile.moderator describe parameter
-#' @param values.moderator describe parameter
+#' @param object object of class \code{lm}
+#' @param antecedent antecedent (or x) variable in \code{object}
+#' @param moderator moderator variable in \code{object}
+#' @param alpha desired alpha level for Johnson-Neyman procedure
+#' @param JN indicate whether Johnson-Neyman procedure should be carried out
+#' @param n.interval.moderator number of intervals in the moderator variable to probe
+#' @param quantile.moderator quantile values in the moderator variable to probe
+#' @param values.moderator raw values in the moderator variable to probe
 #' @return \code{probeInteraction} returns a data frame containing values of the moderator
 #'     in a linear model, the effect of the antecedent at that value of the moderator,
 #'     standard errors, t values, p values and a confidence interval.
+#' @details the arguments \code{n.interval.moderator}, \code{quantile.moderator} and \code{values.moderator}
+#'     can be combined. All unique values from these methods combined, together with the values from the
+#'     Johnson-Neyman procedure (if specified) will be part of the probing procedure.
 #' @importFrom stats qt quantile na.omit qnorm coef vcov
 #' @importFrom methods hasArg
 #' @examples
@@ -26,6 +29,7 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
   arguments <- as.list(match.call())
   Xname     <- as.character(arguments$antecedent)
   Mname     <- as.character(arguments$moderator)
+  if(!inherits(object, "lm")) stop("only lm class objects are currently supported", call. = FALSE)
 
   # Specified for lm objects; change this section for e.g. lme or lmerMod class objects
   V         <- vcov(object)                            # Variance-covariance matrix of estimates
