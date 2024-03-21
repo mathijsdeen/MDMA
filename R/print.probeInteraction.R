@@ -1,4 +1,7 @@
 #' @title Print effects of probed interaction
+#' @description Print the effects from a probed interaction
+#'
+#' `r lifecycle::badge("stable")`
 #' @param x object of class \code{probeInteraction}
 #' @param ... other parameters (none are used)
 #'
