@@ -6,4 +6,7 @@
     * If `TRUE`, use Johnson-Neyman, and a large `n.interval.moderator` for smooth plotting.
   * Moderator on x-axis, p-value OR effect on y-axis.
     * Use an argument for this.
-  * Vertical line corresponding to alpha level
+  * Vertical line corresponding to alpha level.
+* Create a print method for `probeInteraction`.
+* `probeInteraction` Should only work with `lm`-objects (for now).
+* Work on the documentation for `probeInteraction` (remove placeholders).
