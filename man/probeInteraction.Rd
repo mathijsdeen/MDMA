@@ -16,21 +16,21 @@ probeInteraction(
 )
 }
 \arguments{
-\item{object}{describe parameter}
+\item{object}{object of class \code{lm}}
 
-\item{antecedent}{describe parameter}
+\item{antecedent}{antecedent (or x) variable in \code{object}}
 
-\item{moderator}{describe parameter}
+\item{moderator}{moderator variable in \code{object}}
 
-\item{alpha}{describe parameter}
+\item{alpha}{desired alpha level for Johnson-Neyman procedure}
 
-\item{JN}{describe parameter}
+\item{JN}{indicate whether Johnson-Neyman procedure should be carried out}
 
-\item{n.interval.moderator}{describe parameter}
+\item{n.interval.moderator}{number of intervals in the moderator variable to probe}
 
-\item{quantile.moderator}{describe parameter}
+\item{quantile.moderator}{quantile values in the moderator variable to probe}
 
-\item{values.moderator}{describe parameter}
+\item{values.moderator}{raw values in the moderator variable to probe}
 }
 \value{
 \code{probeInteraction} returns a data frame containing values of the moderator
@@ -41,6 +41,11 @@ standard errors, t values, p values and a confidence interval.
 Probe the effect of a moderator on an X/antecedent variable in a linear model.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
+the arguments \code{n.interval.moderator}, \code{quantile.moderator} and \code{values.moderator}
+can be combined. All unique values from these methods combined, together with the values from the
+Johnson-Neyman procedure (if specified) will be part of the probing procedure.
 }
 \examples{
 lm.1 <- lm(mpg ~ hp * wt, data = mtcars)
