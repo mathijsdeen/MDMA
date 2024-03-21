@@ -64,6 +64,22 @@ lm.1 <- lm(mpg ~ hp, data = mtcars)
 lm.2 <- lm(mpg ~ hp + wt, data = mtcars)
 lm.3 <- lm(mpg ~ hp * wt, data = mtcars)
 lm.4 <- lm(mpg ~ hp * wt + am, data = mtcars)
+
+pI <- probeInteraction(lm.3, hp, wt, n.interval.moderator = 35)
+probeInteraction(lm.3, hp, wt, n.interval.moderator = 35)
+
+lm.3$call
+as.character(lm.3$call[[2]][2])
+
+print.probeInteraction <- function(object, ...){
+  print(object$effects)
+}
+
+m <- pI
+
+print(pI) |> round(3)
+
+tTest(x1, x2)
 posteriorModelOdds(lm.1, lm.2, lm.3, lm.4) |> round(3)
 
 detach("package:mdma", unload = TRUE)
@@ -166,3 +182,7 @@ x2 <- QIDS$QIDS[QIDS$depression == "No"]
 tt <- tTest(x1, x2)
 summary(tt, rnd = c(1,2,3))
 print(tt)
+
+pI <- probeInteraction(lm.3, hp, wt, n.interval.moderator = 35, alpha = .05)
+plot(pI)
+
