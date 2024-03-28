@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+#testing and todo
+testscript.R
+todo.md
+
