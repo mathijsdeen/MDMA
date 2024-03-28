@@ -9,11 +9,12 @@ tTest(
   y = NULL,
   sdx = NULL,
   sdy = NULL,
-  nx = length(x),
-  ny = length(y),
+  nx = length(na.omit(x)),
+  ny = length(na.omit(y)),
   alternative = c("two.sided", "greater", "less"),
   mu = 0,
   paired = FALSE,
+  rxy = NULL,
   var.equal = FALSE,
   conf.level = 0.95
 )
@@ -40,6 +41,8 @@ if you are performing an independent samples t-test).}
 
 \item{paired}{a logical indicating whether you want a paired t-test}
 
+\item{rxy}{correlation between two paired samples}
+
 \item{var.equal}{a logical variable indicating whether to treat the two variances as being equal. If
 \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used.}
 
@@ -51,7 +54,7 @@ if you are performing an independent samples t-test).}
 \description{
 perform t tests with the possibility of inputting group statistics
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 \dontrun{
