@@ -2,7 +2,10 @@ Package: MDMA
 Title: Mathijs Deen's Miscellaneous Auxiliaries
 Date: 2024-03-28
 Version: 0.4.0
-Author: Mathijs Deen
+Authors@R: c(person(given  = "Mathijs", 
+                    family = "Deen",
+                    role   = c("aut", "cre"),
+                    email  = "dev@mathijsdeen.com"))
 Maintainer: Mathijs Deen <dev@mathijsdeen.com>
 Description: Provides a variety of functions useful for data analysis,
     selection, manipulation, and graphics. 
@@ -13,6 +16,8 @@ Depends:
     graphics,
     methods
 License: GPL-3 + file LICENSE
+URL: https://github.com/mathijsdeen/MDMA
+BugReports: https://github.com/mathijsdeen/MDMA/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.1
