@@ -50,7 +50,7 @@ plotDistribution <- function(distribution = c("normal", "t", "chi2", "F"),
   if(distribution == "normal") y <- dnorm(x, mean = mean, sd = sd, log = FALSE)
   if(distribution == "t") y <- dt(x = x, df = df, ncp = ncp, log = FALSE)
   if(distribution == "chi2") y <- dchisq(x = x, df = df, ncp = ncp, log = FALSE)
-  if(distribution == "F") y <- stats::df(x = x, df1 = df1, df2 = df2, ncp = ncp, log = FALSE)
+  if(distribution == "F") y <- stats::df(x = x, df1 = df1, df2 = df2, ncp = ncp, log = FALSE) #df function from stats package, not the df argument
   plot(x, y, type="l", ...)
   if(!is.null(xColArea)){
     if(!is.matrix(xColArea)) stop("nColArea is not a matrix", call.=FALSE)
