@@ -25,6 +25,7 @@
 #'                          quantile.moderator = c(0.1,0.9), values.moderator = 2)
 #' plot(pI.2)
 #' @importFrom grDevices rgb
+#' @importFrom graphics mtext
 #' @author Mathijs Deen
 plot.probeInteraction <- function(x,
                                   ...,
@@ -59,7 +60,11 @@ plot.probeInteraction <- function(x,
           c(LLCI, rev(ULCI)),
           col=col.CI,
           border = NA)
-  if(JN) abline(v   = modVals[which(abs(pVals-alpha) < 10 * .Machine$double.eps)],
-                col = col.JN,
-                lty = lty.JN)
+  if(JN){
+    JNpoints <- modVals[which(abs(pVals-alpha) < 10 * .Machine$double.eps)]
+    abline(v   = JNpoints,
+           col = col.JN,
+           lty = lty.JN)
+    mtext(sprintf("%.3f", JNpoints),side=3, at=JNpoints, line = 0.5)
+  }
 }
