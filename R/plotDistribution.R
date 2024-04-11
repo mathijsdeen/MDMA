@@ -61,8 +61,8 @@ plotDistribution <- function(distribution = c("normal", "t", "chi2", "F"),
       stop("xAreaCol should be length 1 or length dim(xColArea)[1]", call. = FALSE)
     for(i in seq_along(1:nrow(xColArea))){
       r <- xColArea[i,]
-      polygon(c(x[x %in.range% r], max(r), min(r)),
-              c(y[x %in.range% r], 0, 0),
+      polygon(c(x[x %inRange% r], max(r), min(r)),
+              c(y[x %inRange% r], 0, 0),
               col = xAreaCol[i])
     }
   }
