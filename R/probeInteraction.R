@@ -89,8 +89,10 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
   SE     <- sqrt(V.bX + 2 * Mvals * C.bXbI + Mvals^2 * V.bI)
   tvals  <- effect / SE
   pvals  <- 2 * (1 - pt(q = abs(tvals), df = res.df))
-  LLCI   <- effect - qnorm(1 - alpha/2) * SE
-  ULCI   <- effect + qnorm(1 - alpha/2) * SE
+  #LLCI   <- effect - qnorm(1 - alpha/2) * SE
+  #ULCI   <- effect + qnorm(1 - alpha/2) * SE
+  LLCI   <- effect - qt(1 - alpha/2, df = res.df) * SE
+  ULCI   <- effect + qt(1 - alpha/2, df = res.df) * SE
 
   # Create output
   effects <- data.frame(Mvals, effect, SE, tvals, pvals, LLCI, ULCI)
