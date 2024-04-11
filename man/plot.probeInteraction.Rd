@@ -7,55 +7,47 @@
 \method{plot}{probeInteraction}(
   x,
   ...,
-  lty.p = "solid",
-  pch.p = 1,
-  col.p = "black",
-  lty.effect = "longdash",
-  pch.effect = 17,
-  col.effect = "green",
   col.JN = "red",
   lty.JN = "dotted",
-  pos.legend = "topleft"
+  col.CI = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2),
+  lty.CI = "longdash",
+  lty.0 = "dotted"
 )
 }
 \arguments{
-\item{x}{object of class \code{probeInteraction}}
+\item{x}{object of class \code{probeInteraction}.}
 
-\item{...}{other arguments (none are used)}
+\item{...}{other arguments (none are used).}
 
-\item{lty.p}{linetype for p values}
+\item{col.JN}{color for Johnson-Neyman cut-off line(s).}
 
-\item{pch.p}{point character for p values}
+\item{lty.JN}{linetype for Johnson-Neyman cut-off line(s).}
 
-\item{col.p}{color for p values}
+\item{col.CI}{color of the shade for the confidence interval.}
 
-\item{lty.effect}{linetype for effect}
+\item{lty.CI}{linetype for confidence interval boundaries.}
 
-\item{pch.effect}{point character for effect}
-
-\item{col.effect}{color for effect}
-
-\item{col.JN}{color for Johnson-Neyman cut-off line(s)}
-
-\item{lty.JN}{linetype for Johnson-Neyman cut-off line(s)}
-
-\item{pos.legend}{position of legend}
+\item{lty.0}{linetype for the horizontal line where the effect of the focal predictor on
+the outcome equals 0.}
 }
 \value{
 \code{plot.probeInteraction} returns a combined plot with p value on the
 first y axis and effect of the antecedent variable
 }
 \description{
-Plot the effects of the antecedent and corresponding p value
-as functions of the moderator.
+Plot the effects of the antecedent as a function of the moderator.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 lm.1 <- lm(mpg ~ hp * wt, data = mtcars)
-pI <- probeInteraction(lm.1, hp, wt, JN=TRUE, n.interval.moderator = 3,
-                       quantile.moderator = c(0.1,0.9), values.moderator = 2)
-plot(pI)
+pI.1 <- probeInteraction(lm.1, hp, wt, JN=TRUE, n.interval.moderator = 3,
+                         quantile.moderator = c(0.1,0.9), values.moderator = 2)
+plot(pI.1)
+lm.2 <- lm(mpg ~ qsec * drat, data = mtcars)
+pI.2 <- probeInteraction(lm.2, qsec, drat, JN=TRUE, n.interval.moderator = 30,
+                         quantile.moderator = c(0.1,0.9), values.moderator = 2)
+plot(pI.2)
 }
 \author{
 Mathijs Deen
