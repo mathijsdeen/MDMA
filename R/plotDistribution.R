@@ -57,7 +57,8 @@ plotDistribution <- function(distribution = c("normal", "t", "chi2", "F"),
     if(dim(xColArea)[2] != 2) stop("nColArea should have 2 columns", call.=FALSE)
     if(is.null(xAreaCol)) xAreaCol <- "red"
     if(length(xAreaCol) == 1) xAreaCol <- rep(xAreaCol[1], dim(xColArea)[1])
-    if(length(xAreaCol) != dim(xColArea)[1]) stop("xAreaCol should be length 1 or length dim(xColArea)[1]", call. = FALSE)
+    if(length(xAreaCol) != dim(xColArea)[1])
+      stop("xAreaCol should be length 1 or length dim(xColArea)[1]", call. = FALSE)
     for(i in seq_along(1:nrow(xColArea))){
       r <- xColArea[i,]
       polygon(c(x[x %in.range% r], max(r), min(r)),
