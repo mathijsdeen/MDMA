@@ -89,8 +89,10 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
   SE     <- sqrt(V.bX + 2 * Mvals * C.bXbI + Mvals^2 * V.bI)
   tvals  <- effect / SE
   pvals  <- 2 * (1 - pt(q = abs(tvals), df = res.df))
-  LLCI   <- effect - qnorm(1 - alpha/2) * SE
-  ULCI   <- effect + qnorm(1 - alpha/2) * SE
+  #LLCI   <- effect - qnorm(1 - alpha/2) * SE
+  #ULCI   <- effect + qnorm(1 - alpha/2) * SE
+  LLCI   <- effect - qt(1 - alpha/2, df = res.df) * SE
+  ULCI   <- effect + qt(1 - alpha/2, df = res.df) * SE
 
   # Create output
   effects <- data.frame(Mvals, effect, SE, tvals, pvals, LLCI, ULCI)
@@ -99,4 +101,96 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
               arguments = arguments, formula = object$call)
   class(out) <- "probeInteraction"
   return(out)
+}
+
+#' @title plot probed interaction
+#' @description Plot the effects of the antecedent as a function of the moderator.
+#'
+#' `r lifecycle::badge("experimental")`
+#' @param x object of class \code{probeInteraction}.
+#' @param ... other arguments (none are used).
+#' @param col.JN color for Johnson-Neyman cut-off line(s).
+#' @param lty.JN linetype for Johnson-Neyman cut-off line(s).
+#' @param col.CI color of the shade for the confidence interval.
+#' @param lty.CI linetype for confidence interval boundaries.
+#' @param lty.0 linetype for the horizontal line where the effect of the focal predictor on
+#'     the outcome equals 0.
+#'
+#' @return \code{plot.probeInteraction} returns a combined plot with p value on the
+#'     first y axis and effect of the antecedent variable
+#' @export
+#'
+#' @examples
+#' lm.1 <- lm(mpg ~ hp * wt, data = mtcars)
+#' pI.1 <- probeInteraction(lm.1, hp, wt, JN=TRUE, n.interval.moderator = 3,
+#'                          quantile.moderator = c(0.1,0.9), values.moderator = 2)
+#' plot(pI.1)
+#' lm.2 <- lm(mpg ~ qsec * drat, data = mtcars)
+#' pI.2 <- probeInteraction(lm.2, qsec, drat, JN=TRUE, n.interval.moderator = 30,
+#'                          quantile.moderator = c(0.1,0.9), values.moderator = 2)
+#' plot(pI.2)
+#' @importFrom grDevices rgb
+#' @importFrom graphics mtext
+#' @author Mathijs Deen
+plot.probeInteraction <- function(x,
+                                  ...,
+                                  col.JN = "red",
+                                  lty.JN = "dotted",
+                                  col.CI = rgb(red = .5, green = .5, blue = .5, alpha = .2),
+                                  lty.CI = "longdash",
+                                  lty.0  = "dotted"){
+  modName <- x$arguments$moderator
+  antName <- x$arguments$antecedent
+  modVals <- eval(modName, x$effects)
+  pVals   <- x$effects$p
+  effVals <- x$effects$Effect
+  conName <- as.character(x$formula[[2]][2])
+  LLCI    <- x$effects$LLCI
+  ULCI    <- x$effects$ULCI
+  yRange  <- c(min(LLCI), max(ULCI))
+  ifelse("alpha" %in% names(x$arguments), alpha <- x$arguments$alpha, alpha <- .05)
+  ifelse("JN" %in% names(x$arguments), JN <- x$arguments$JN, JN <- TRUE)
+
+  plot(x    = modVals,
+       y    = effVals,
+       ylim = yRange,
+       ylab = paste0("effect of ", antName, " on ", conName),
+       xlab = modName,
+       ...)
+  lines(x = modVals, y = effVals, ...)
+  lines(x = modVals, y = LLCI, lty=lty.CI)
+  lines(x = modVals, y = ULCI, lty=lty.CI)
+  abline(h=0, lty=lty.0)
+  polygon(c(modVals, rev(modVals)),
+          c(LLCI, rev(ULCI)),
+          col=col.CI,
+          border = NA)
+  if(JN){
+    JNpoints <- modVals[which(abs(pVals-alpha) < 10 * .Machine$double.eps)]
+    abline(v   = JNpoints,
+           col = col.JN,
+           lty = lty.JN)
+    mtext(sprintf("%.3f", JNpoints),side=3, at=JNpoints, line = 0.5)
+  }
+}
+
+#' @title Print effects of probed interaction
+#' @description Print the effects from a probed interaction
+#'
+#' `r lifecycle::badge("stable")`
+#' @param x object of class \code{probeInteraction}
+#' @param ... other parameters (none are used)
+#'
+#' @return \code{print.probeInteraction} prints the effects table of a
+#'     \code{probeInteraction} object
+#' @export
+#'
+#' @examples
+#' lm.1 <- lm(mpg ~ hp * wt, data = mtcars)
+#' pI <- probeInteraction(lm.1, hp, wt, JN=TRUE, n.interval.moderator = 3,
+#'                        quantile.moderator = c(0.1,0.9), values.moderator = 2)
+#' print(pI)
+#' @author Mathijs Deen
+print.probeInteraction <- function(x, ...){
+  print(x$effects)
 }

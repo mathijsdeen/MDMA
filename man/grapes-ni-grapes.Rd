@@ -24,7 +24,6 @@ The \code{\%ni\%} function negates the \code{\%in\%} operator.
 }
 \examples{
 c(1,2,3) \%ni\% c(1,2)
-
 }
 \author{
 Mathijs Deen

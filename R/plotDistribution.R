@@ -50,18 +50,19 @@ plotDistribution <- function(distribution = c("normal", "t", "chi2", "F"),
   if(distribution == "normal") y <- dnorm(x, mean = mean, sd = sd, log = FALSE)
   if(distribution == "t") y <- dt(x = x, df = df, ncp = ncp, log = FALSE)
   if(distribution == "chi2") y <- dchisq(x = x, df = df, ncp = ncp, log = FALSE)
-  if(distribution == "F") y <- stats::df(x = x, df1 = df1, df2 = df2, ncp = ncp, log = FALSE)
+  if(distribution == "F") y <- stats::df(x = x, df1 = df1, df2 = df2, ncp = ncp, log = FALSE) #df function from stats package, not the df argument
   plot(x, y, type="l", ...)
   if(!is.null(xColArea)){
     if(!is.matrix(xColArea)) stop("nColArea is not a matrix", call.=FALSE)
     if(dim(xColArea)[2] != 2) stop("nColArea should have 2 columns", call.=FALSE)
     if(is.null(xAreaCol)) xAreaCol <- "red"
     if(length(xAreaCol) == 1) xAreaCol <- rep(xAreaCol[1], dim(xColArea)[1])
-    if(length(xAreaCol) != dim(xColArea)[1]) stop("xAreaCol should be length 1 or length dim(xColArea)[1]", call. = FALSE)
+    if(length(xAreaCol) != dim(xColArea)[1])
+      stop("xAreaCol should be length 1 or length dim(xColArea)[1]", call. = FALSE)
     for(i in seq_along(1:nrow(xColArea))){
       r <- xColArea[i,]
-      polygon(c(x[x %in.range% r], max(r), min(r)),
-              c(y[x %in.range% r], 0, 0),
+      polygon(c(x[x %inRange% r], max(r), min(r)),
+              c(y[x %inRange% r], 0, 0),
               col = xAreaCol[i])
     }
   }
