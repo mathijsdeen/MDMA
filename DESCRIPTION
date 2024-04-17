@@ -1,7 +1,7 @@
 Package: MDMA
 Title: Mathijs Deen's Miscellaneous Auxiliaries
-Date: 2024-04-11
-Version: 0.6.0
+Date: 2024-04-17
+Version: 0.7.0
 Authors@R: c(person(given  = "Mathijs", 
                     family = "Deen",
                     role   = c("aut", "cre"),
@@ -15,7 +15,8 @@ Depends:
     MASS,
     graphics,
     methods,
-    grDevices
+    grDevices,
+    car
 License: GPL-3 + file LICENSE
 URL: https://github.com/mathijsdeen/MDMA
 BugReports: https://github.com/mathijsdeen/MDMA/issues
