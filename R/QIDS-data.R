@@ -7,7 +7,7 @@
 #' @usage QIDS
 #' @format the following variables are available:
 #' \itemize{
-#'  \item \code{QIDS}: QIDS-SR total score
+#'  \item \code{QIDS}: QIDS-SR total score.
 #'  \item \code{Depression}: an indicator whether the individual was diagnosed with a depression or not.
 #' }
 #' @docType data

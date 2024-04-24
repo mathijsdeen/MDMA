@@ -1,15 +1,15 @@
 #' @title Probe interaction models
 #' @description Probe the effect of a moderator on an X/antecedent variable in a linear model.
 #'
-#' `r lifecycle::badge("experimental")`
-#' @param object object of class \code{lm}
-#' @param antecedent antecedent (or x) variable in \code{object}
-#' @param moderator moderator variable in \code{object}
-#' @param alpha desired alpha level for Johnson-Neyman procedure
-#' @param JN indicate whether Johnson-Neyman procedure should be carried out
-#' @param n.interval.moderator number of intervals in the moderator variable to probe
-#' @param quantile.moderator quantile values in the moderator variable to probe
-#' @param values.moderator raw values in the moderator variable to probe
+#' `r lifecycle::badge("stable")`
+#' @param object object of class \code{lm}.
+#' @param antecedent antecedent (or x) variable in \code{object}.
+#' @param moderator moderator variable in \code{object}.
+#' @param alpha desired alpha level for Johnson-Neyman procedure.
+#' @param JN indicate whether Johnson-Neyman procedure should be carried out.
+#' @param n.interval.moderator number of intervals in the moderator variable to probe.
+#' @param quantile.moderator quantile values in the moderator variable to probe.
+#' @param values.moderator raw values in the moderator variable to probe.
 #' @return \code{probeInteraction} returns a data frame containing values of the moderator
 #'     in a linear model, the effect of the antecedent at that value of the moderator,
 #'     standard errors, t values, p values and a confidence interval.
@@ -31,12 +31,10 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
   Mname     <- as.character(arguments$moderator)
   if(!inherits(object, "lm")) stop("only lm class objects are currently supported", call. = FALSE)
 
-  # Specified for lm objects; change this section for e.g. lme or lmerMod class objects
-  V         <- vcov(object)                            # Variance-covariance matrix of estimates
-  B         <- coef(object)                            # Estimates
-  Mobserved <- eval(arguments$moderator, object$model) # Observed moderator values in model data
+  V         <- vcov(object)
+  B         <- coef(object)
+  Mobserved <- eval(arguments$moderator, object$model)
 
-  # Get the right indices for antecedent, moderator and interaction
   Xpos    <- which(names(B) %in% Xname)
   Mpos    <- which(names(B) %in% Mname)
   XMpos   <- c(Xpos, Mpos)
@@ -44,7 +42,6 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
   Iname   <- paste0(XMnames[1],":",XMnames[2])
   Ipos    <- which(names(B) %in% Iname)
 
-  # Get parameter estimates, variances, covariance, df and critical t value
   bX     <- B[Xpos]
   bI     <- B[Ipos]
   V.bX   <- V[Xpos, Xpos]
@@ -55,7 +52,6 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
 
   Mintervalpoints <- Mquantilepoints <- JNpoints <- Mrawpoints <- NA
 
-  # Johnson-Neyman procedure
   if(JN==TRUE){
     a <- tc^2 * V.bI - bI^2
     b <- 2 * tc^2 * C.bXbI - 2 * bX * bI
@@ -64,37 +60,28 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
     ifelse(D < 0, JNpoints <- NA, JNpoints <- (-b + c(-1, 1) * sqrt(D)) / (2 * a))
   }
 
-  # Determine equal steps in range of moderator for interaction probing
   if(hasArg(n.interval.moderator)){
     Mintervalpoints <- diff(range(Mobserved)) * (0:n.interval.moderator)/n.interval.moderator +
       min(Mobserved)
   }
 
-  # Determine quantiles in moderator for interaction probing
   if(hasArg(quantile.moderator)){
     Mquantilepoints <- quantile(Mobserved, quantile.moderator)
   }
 
-  # If there are any, use the prespecified raw moderator values as well
   if(hasArg(values.moderator)){
     Mrawpoints <- values.moderator
   }
 
-  # Combine and sort all unique moderator values from JN, steps, quantiles, and raw input
   Mvals <- sort(na.omit(unique(c(JNpoints, Mintervalpoints, Mquantilepoints, Mrawpoints))))
 
-  # Calculate statistics
-  # maybe use predict function for this? Currently won't work with more complex models
   effect <- bX + bI*Mvals
   SE     <- sqrt(V.bX + 2 * Mvals * C.bXbI + Mvals^2 * V.bI)
   tvals  <- effect / SE
   pvals  <- 2 * (1 - pt(q = abs(tvals), df = res.df))
-  #LLCI   <- effect - qnorm(1 - alpha/2) * SE
-  #ULCI   <- effect + qnorm(1 - alpha/2) * SE
   LLCI   <- effect - qt(1 - alpha/2, df = res.df) * SE
   ULCI   <- effect + qt(1 - alpha/2, df = res.df) * SE
 
-  # Create output
   effects <- data.frame(Mvals, effect, SE, tvals, pvals, LLCI, ULCI)
   names(effects) <- c(names(B)[Mpos], "Effect", "se", "t", "p", "LLCI", "ULCI")
   out <- list(effects = effects, data = object$model,
@@ -106,7 +93,7 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
 #' @title plot probed interaction
 #' @description Plot the effects of the antecedent as a function of the moderator.
 #'
-#' `r lifecycle::badge("experimental")`
+#' `r lifecycle::badge("stable")`
 #' @param x object of class \code{probeInteraction}.
 #' @param ... other arguments (none are used).
 #' @param col.JN color for Johnson-Neyman cut-off line(s).
@@ -117,7 +104,7 @@ probeInteraction <- function(object, antecedent, moderator, alpha=.05, JN=TRUE,
 #'     the outcome equals 0.
 #'
 #' @return \code{plot.probeInteraction} returns a combined plot with p value on the
-#'     first y axis and effect of the antecedent variable
+#'     first y axis and effect of the antecedent variable.
 #' @export
 #'
 #' @examples
@@ -175,14 +162,14 @@ plot.probeInteraction <- function(x,
 }
 
 #' @title Print effects of probed interaction
-#' @description Print the effects from a probed interaction
+#' @description Print the effects from a probed interaction.
 #'
 #' `r lifecycle::badge("stable")`
-#' @param x object of class \code{probeInteraction}
-#' @param ... other parameters (none are used)
+#' @param x object of class \code{probeInteraction}.
+#' @param ... other parameters (none are used).
 #'
 #' @return \code{print.probeInteraction} prints the effects table of a
-#'     \code{probeInteraction} object
+#'     \code{probeInteraction} object.
 #' @export
 #'
 #' @examples

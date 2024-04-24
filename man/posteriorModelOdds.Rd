@@ -7,13 +7,13 @@
 posteriorModelOdds(...)
 }
 \arguments{
-\item{...}{objects of class \code{(g)lm}, given as separate arguments}
+\item{...}{objects of class \code{(g)lm}, given as separate arguments.}
 }
 \value{
 \code{posteriorModelOdds} returns to posterior model odds for the models provided.
 }
 \description{
-Calculate the posterior model odds for a set of models
+Calculate the posterior model odds for a set of models.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

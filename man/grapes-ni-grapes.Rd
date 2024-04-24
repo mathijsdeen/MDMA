@@ -2,14 +2,14 @@
 % Please edit documentation in R/ni.R
 \name{\%ni\%}
 \alias{\%ni\%}
-\title{\%ni\% function}
+\title{Inverse value matching}
 \usage{
 lhs \%ni\% rhs
 }
 \arguments{
-\item{lhs}{left hand side}
+\item{lhs}{left hand side.}
 
-\item{rhs}{right hand side}
+\item{rhs}{right hand side.}
 }
 \value{
 The function returns a vector of the same length as \code{lhs}.

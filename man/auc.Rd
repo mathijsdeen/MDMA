@@ -15,7 +15,7 @@ auc(x, ...)
 returns the area under the curve for a \code{roc} class object.
 }
 \description{
-Calculate the area under the curve
+Calculate the area under the curve.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

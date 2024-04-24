@@ -1,5 +1,5 @@
 #' @title Area under the curve
-#' @description Calculate the area under the curve
+#' @description Calculate the area under the curve.
 #'
 #' `r lifecycle::badge("stable")`
 #' @param x object of class \code{roc}.

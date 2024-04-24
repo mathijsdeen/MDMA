@@ -1,11 +1,11 @@
 #' @title Display frequency table
-#' @description Display frequency table with percentages and cumulative percentages
+#' @description Display frequency table with percentages and cumulative percentages.
 #'
 #' `r lifecycle::badge("stable")`
-#' @param x vector of values
-#' @return object of type \code{data.frame} containing frequencies, percentages and cumulative percentages
-#' @examples \dontrun{
-#' frequencies(datasets::mtcars$carb)}
+#' @param x vector of values.
+#' @return object of type \code{data.frame} containing frequencies, percentages and cumulative percentages.
+#' @examples
+#' frequencies(datasets::mtcars$carb)
 #' @author Mathijs Deen
 #' @export
 frequencies <- function(x) {

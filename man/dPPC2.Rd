@@ -7,39 +7,40 @@
 dPPC2(preT, posT, preC, posC, correct = TRUE, CIlevel = 0.95)
 }
 \arguments{
-\item{preT}{pre-scores for treatment group}
+\item{preT}{pre-scores for treatment group.}
 
-\item{posT}{post-scores for treatment group}
+\item{posT}{post-scores for treatment group.}
 
-\item{preC}{pre-scores for control group}
+\item{preC}{pre-scores for control group.}
 
-\item{posC}{post-scores for control group}
+\item{posC}{post-scores for control group.}
 
-\item{correct}{indicates whether a correction factor should be calculated (i.e., Hedges' \emph{g} instead of Cohen's \emph{d})}
+\item{correct}{indicates whether a correction factor should be calculated (i.e., Hedges' \emph{g} instead of Cohen's \emph{d}).}
 
-\item{CIlevel}{the confidence level required}
+\item{CIlevel}{the confidence level required.}
 }
 \value{
 \code{dPPC2} returns a vector of length 6, containing:
-\item{d}{the effect size estimate}
-\item{SE}{the standard error of the effect sie estimate}
-\item{lower.bound}{lower bound of the confidence interval}
-\item{upper.bound}{upper bound of the confidence interval}
-\item{NT}{sample size of treatment group}
-\item{NC}{sample size of control group}
+\item{d}{the effect size estimate.}
+\item{SE}{the standard error of the effect sie estimate.}
+\item{lower.bound}{lower bound of the confidence interval.}
+\item{upper.bound}{upper bound of the confidence interval.}
+\item{NT}{sample size of treatment group.}
+\item{NC}{sample size of control group.}
 }
 \description{
-calculates an effect size for studies with pretest and posttest scores for two groups, usually a treatment and a control group. It is based on Morris (2008), who based it on Becker (1988).
+\code{dPPC2} calculates an effect size for studies with
+pretest and posttest scores for two groups, usually a treatment and
+a control group. It is based on Morris (2008), who based it on Becker (1988).
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 library(MASS)
 set.seed(1)
 treatment <- mvrnorm(n=50, mu=c(50,40), Sigma = matrix(c(100,70,70,100), ncol=2), empirical = TRUE)
 control <- mvrnorm(n=50, mu=c(50,45), Sigma = matrix(c(100,70,70,100), ncol=2), empirical = TRUE)
-dPPC2(treatment[,1], treatment[,2], control[,1], control[,2])}
+dPPC2(treatment[,1], treatment[,2], control[,1], control[,2])
 }
 \references{
 \itemize{

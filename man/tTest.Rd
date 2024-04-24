@@ -22,15 +22,15 @@ tTest(
 \arguments{
 \item{x}{a numeric vector. Can be of length 1 for a group mean.}
 
-\item{y}{a numeric vector. Should be \code{NULL} for a one-sample t-test}
+\item{y}{a numeric vector. Should be \code{NULL} for a one-sample t-test.}
 
-\item{sdx}{standard deviation for \code{x}, when this reflects a group mean}
+\item{sdx}{standard deviation for \code{x}, when this reflects a group mean.}
 
-\item{sdy}{standard deviation for \code{y}, when this reflects a group mean}
+\item{sdy}{standard deviation for \code{y}, when this reflects a group mean.}
 
-\item{nx}{sample size for \code{x}, when this reflects a group mean}
+\item{nx}{sample size for \code{x}, when this reflects a group mean.}
 
-\item{ny}{sample size for \code{y}, when this reflects a group mean}
+\item{ny}{sample size for \code{y}, when this reflects a group mean.}
 
 \item{alternative}{a character string specifying the alternative hypothesis,
 must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".
@@ -39,9 +39,9 @@ You can specify just the initial letter.}
 \item{mu}{a number indicating the true value of the mean (or difference in means)
 if you are performing an independent samples t-test).}
 
-\item{paired}{a logical indicating whether you want a paired t-test}
+\item{paired}{a logical indicating whether you want a paired t-test.}
 
-\item{rxy}{correlation between two paired samples}
+\item{rxy}{correlation between two paired samples.}
 
 \item{var.equal}{a logical variable indicating whether to treat the two variances as being equal. If
 \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used.}
@@ -52,14 +52,12 @@ if you are performing an independent samples t-test).}
 \code{tTest} performs a t-test (independent samples, paired samples, one sample) just like base-R t.test, but with the extended possibility to enter group statistics instead of raw data.
 }
 \description{
-perform t tests with the possibility of inputting group statistics
+perform t tests with the possibility of inputting group statistics.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 library(MASS)
-library(tidyr)
 set.seed(1)
 ds <- mvrnorm(n=50, mu = c(50,55),
               Sigma = matrix(c(100,0,0,81),
@@ -71,7 +69,7 @@ t.test(ds$x1, ds$x2)
 tTest(x   = ds$x1,
       y   = 55,
       sdy = 9,
-      ny  = 50)}
+      ny  = 50)
 }
 \author{
 Mathijs Deen

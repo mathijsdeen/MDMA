@@ -42,13 +42,13 @@ Defaults to \code{"red"}. Should either be length 1 or length \code{length(xColA
 
 \item{ncp}{non-centrality parameter}
 
-\item{...}{other arguments to be forwarded to the \code{plot} function}
+\item{...}{other arguments to be forwarded to the \code{plot} function.}
 }
 \value{
 \code{plotDistribution} returns a probability density plot.
 }
 \description{
-Plot the density function of certain probability distributions
+Plot the density function of certain probability distributions.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

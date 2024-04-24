@@ -7,14 +7,14 @@
 m(x)
 }
 \arguments{
-\item{x}{a numeric matrix or vector}
+\item{x}{a numeric matrix or vector.}
 }
 \value{
 \code{m} returns a mean centered version of \code{x}. If \code{x} is
 a matrix, the matrix dimensions are preserved.
 }
 \description{
-Mean center a vector or numeric matrix
+Mean center a vector or numeric matrix.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

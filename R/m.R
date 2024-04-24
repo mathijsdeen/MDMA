@@ -1,8 +1,8 @@
 #' @title Mean center
-#' @description Mean center a vector or numeric matrix
+#' @description Mean center a vector or numeric matrix.
 #'
 #' `r lifecycle::badge("stable")`
-#' @param x a numeric matrix or vector
+#' @param x a numeric matrix or vector.
 #' @return \code{m} returns a mean centered version of \code{x}. If \code{x} is
 #'     a matrix, the matrix dimensions are preserved.
 #' @details This function resembles \code{base::scale.default}, with the \code{scale}
