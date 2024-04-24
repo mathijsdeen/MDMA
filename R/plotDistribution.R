@@ -1,5 +1,5 @@
 #' @title Plot a probability distribution
-#' @description Plot the density function of certain probability distributions
+#' @description Plot the density function of certain probability distributions.
 #'
 #' `r lifecycle::badge("stable")`
 #' @param distribution the probability distribution for which a plot should be drawn. Currently,
@@ -15,7 +15,7 @@
 #' @param df1 first df for the F distribution.
 #' @param df2 second df for the F distribution.
 #' @param ncp non-centrality parameter
-#' @param ... other arguments to be forwarded to the \code{plot} function
+#' @param ... other arguments to be forwarded to the \code{plot} function.
 #'
 #' @return \code{plotDistribution} returns a probability density plot.
 #' @importFrom graphics polygon

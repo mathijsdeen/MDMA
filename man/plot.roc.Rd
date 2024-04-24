@@ -7,7 +7,6 @@
 \method{plot}{roc}(
   x,
   y,
-  ...,
   which = 1:3,
   orientation = c("horizontal", "vertical"),
   cutoffs.1 = NULL,
@@ -18,7 +17,8 @@
   xlim.3 = NULL,
   ylim.3 = c(0, 10),
   pos.legend.2 = "right",
-  pos.legend.3 = "topright"
+  pos.legend.3 = "topright",
+  ...
 )
 }
 \arguments{
@@ -26,30 +26,30 @@
 
 \item{y}{argument for generic \code{plot} function, not used here.}
 
-\item{...}{other arguments for generic \code{plot} function, none are used here.}
-
 \item{which}{which plots to show (see Details).}
 
 \item{orientation}{indicate whether the plots should be arranged horizontally
 or vertically.}
 
-\item{cutoffs.1}{cutoff value(s) to be shown in the first plot}
+\item{cutoffs.1}{cutoff value(s) to be shown in the first plot.}
 
-\item{cutoffs.2}{cutoff value(s) to be shown in the second plot}
+\item{cutoffs.2}{cutoff value(s) to be shown in the second plot.}
 
-\item{cutoffs.3}{cutoff value(s) to be shown in the third plot}
+\item{cutoffs.3}{cutoff value(s) to be shown in the third plot.}
 
-\item{xlab.3}{lable for x axis in third plot}
+\item{xlab.3}{lable for x axis in third plot.}
 
-\item{labels.3}{legend labels for third plot}
+\item{labels.3}{legend labels for third plot.}
 
-\item{xlim.3}{xlim for third plot}
+\item{xlim.3}{xlim for third plot.}
 
-\item{ylim.3}{ylim for third plot}
+\item{ylim.3}{ylim for third plot.}
 
-\item{pos.legend.2}{legend position for second plot}
+\item{pos.legend.2}{legend position for second plot.}
 
-\item{pos.legend.3}{legend position for third plot}
+\item{pos.legend.3}{legend position for third plot.}
+
+\item{...}{other arguments for generic \code{plot} function, none are used here.}
 }
 \value{
 \code{plot.roc} provides three plots:
@@ -61,7 +61,7 @@ for all threshold values.
 }
 }
 \description{
-Plot an ROC curve
+Plot an ROC curve.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

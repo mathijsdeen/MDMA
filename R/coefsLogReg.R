@@ -1,14 +1,15 @@
 #'@title Coefficients for logistic regression analysis
-#'@description Show odds ratios and their confidence intervals for logistic regression parameter estimates
+#'@description Show odds ratios and their confidence intervals for logistic regression parameter estimates.
 #'
 #' `r lifecycle::badge("stable")`
-#'@param model object of class \code{glm}, with family parameter set to \code{binomial}
-#'@param confint indicates whether a confidence interval for the odds ratio should be returned
-#'@param level the confidence level required
-#'@return \code{coefsLogReg} returns the same table as \code{summary(object)$coefficients}, with the addition of the coefficients' odds ratios and their confidence intervals.
-#'@examples \dontrun{
+#'@param model object of class \code{glm}, with family parameter set to \code{binomial}.
+#'@param confint indicates whether a confidence interval for the odds ratio should be returned.
+#'@param level the confidence level required.
+#'@return \code{coefsLogReg} returns the same table as \code{summary(object)$coefficients},
+#'    with the addition of the coefficients' odds ratios and their confidence intervals.
+#'@examples
 #'glm(formula = am ~  disp, family = binomial, data = mtcars) |>
-#'  coefsLogReg()}
+#'  coefsLogReg()
 #'@author Mathijs Deen
 #'@importFrom stats confint summary.glm
 #'@import MASS

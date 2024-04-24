@@ -32,12 +32,12 @@ the outcome equals 0.}
 }
 \value{
 \code{plot.probeInteraction} returns a combined plot with p value on the
-first y axis and effect of the antecedent variable
+first y axis and effect of the antecedent variable.
 }
 \description{
 Plot the effects of the antecedent as a function of the moderator.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 lm.1 <- lm(mpg ~ hp * wt, data = mtcars)

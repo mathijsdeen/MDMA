@@ -7,16 +7,16 @@
 \method{print}{probeInteraction}(x, ...)
 }
 \arguments{
-\item{x}{object of class \code{probeInteraction}}
+\item{x}{object of class \code{probeInteraction}.}
 
-\item{...}{other parameters (none are used)}
+\item{...}{other parameters (none are used).}
 }
 \value{
 \code{print.probeInteraction} prints the effects table of a
-\code{probeInteraction} object
+\code{probeInteraction} object.
 }
 \description{
-Print the effects from a probed interaction
+Print the effects from a probed interaction.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

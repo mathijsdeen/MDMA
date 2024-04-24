@@ -1,8 +1,8 @@
 #' @title Posterior model odds
-#' @description Calculate the posterior model odds for a set of models
+#' @description Calculate the posterior model odds for a set of models.
 #'
 #' `r lifecycle::badge("stable")`
-#' @param ... objects of class \code{(g)lm}, given as separate arguments
+#' @param ... objects of class \code{(g)lm}, given as separate arguments.
 #' @return \code{posteriorModelOdds} returns to posterior model odds for the models provided.
 #' @details
 #' Posterior model odds are calculated for every model \eqn{i} as \deqn{\mathrm{pMO}_i = \frac{\mathrm{exp}\Big[-\frac{1}{2}\Delta_i\mathrm{BIC}\Big]}{\sum_{j = 1}^K\mathrm{exp}\Big[-\frac{1}{2}\Delta_j\mathrm{BIC}\Big]},}

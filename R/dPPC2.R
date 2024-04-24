@@ -1,30 +1,32 @@
 #' @title Effect sizes from pretest-posttest-control group designs
-#' @description calculates an effect size for studies with pretest and posttest scores for two groups, usually a treatment and a control group. It is based on Morris (2008), who based it on Becker (1988).
+#' @description \code{dPPC2} calculates an effect size for studies with
+#'     pretest and posttest scores for two groups, usually a treatment and
+#'     a control group. It is based on Morris (2008), who based it on Becker (1988).
 #'
 #' `r lifecycle::badge("stable")`
-#' @param preT pre-scores for treatment group
-#' @param posT post-scores for treatment group
-#' @param preC pre-scores for control group
-#' @param posC post-scores for control group
-#' @param correct indicates whether a correction factor should be calculated (i.e., Hedges' *g* instead of Cohen's *d*)
-#' @param CIlevel the confidence level required
+#' @param preT pre-scores for treatment group.
+#' @param posT post-scores for treatment group.
+#' @param preC pre-scores for control group.
+#' @param posC post-scores for control group.
+#' @param correct indicates whether a correction factor should be calculated (i.e., Hedges' *g* instead of Cohen's *d*).
+#' @param CIlevel the confidence level required.
 #' @return \code{dPPC2} returns a vector of length 6, containing:
-#' \item{d}{the effect size estimate}
-#' \item{SE}{the standard error of the effect sie estimate}
-#' \item{lower.bound}{lower bound of the confidence interval}
-#' \item{upper.bound}{upper bound of the confidence interval}
-#' \item{NT}{sample size of treatment group}
-#' \item{NC}{sample size of control group}
+#' \item{d}{the effect size estimate.}
+#' \item{SE}{the standard error of the effect sie estimate.}
+#' \item{lower.bound}{lower bound of the confidence interval.}
+#' \item{upper.bound}{upper bound of the confidence interval.}
+#' \item{NT}{sample size of treatment group.}
+#' \item{NC}{sample size of control group.}
 #' @references
 #' \itemize{
 #' \item{Becker, B.J. (1988). Synthesizing standardized mean-change measures. *British Journal of Mathematical and Statistical Psychology, 41*, 257-278.}
 #' \item{Morris, S.B. (2008). Estimating effect sizes from pretest-posttest-control group designs. *Organizational Research Methods, 11*, 364-386.}}
-#' @examples \dontrun{
+#' @examples
 #' library(MASS)
 #' set.seed(1)
 #' treatment <- mvrnorm(n=50, mu=c(50,40), Sigma = matrix(c(100,70,70,100), ncol=2), empirical = TRUE)
 #' control <- mvrnorm(n=50, mu=c(50,45), Sigma = matrix(c(100,70,70,100), ncol=2), empirical = TRUE)
-#' dPPC2(treatment[,1], treatment[,2], control[,1], control[,2])}
+#' dPPC2(treatment[,1], treatment[,2], control[,1], control[,2])
 #' @author Mathijs Deen
 #' @importFrom stats qnorm na.omit cor sd
 #' @export

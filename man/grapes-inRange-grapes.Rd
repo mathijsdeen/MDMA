@@ -2,28 +2,29 @@
 % Please edit documentation in R/inRange.R
 \name{\%inRange\%}
 \alias{\%inRange\%}
-\title{Return which values are in a certain range}
+\title{inRange}
 \usage{
 lhs \%inRange\% rhs
 }
 \arguments{
-\item{lhs}{numeric vector}
+\item{lhs}{numeric vector.}
 
-\item{rhs}{numeric vector of length 2 with the bounds of the range}
+\item{rhs}{numeric vector of length 2 with the bounds of the range.}
 }
 \value{
 \code{\%inRange\%} returns a logical vector of \code{length(lhs)}, indicating which
 values of \code{lhs} are and are not in range \code{rhs}. Boundaries of \code{rhs} are included.
 }
 \description{
+Return which values are in a certain range
 \code{\%inRange\%} indicates which values are in a certain range, including the
 boundaries of the range.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
-a <- seq(0, 1, 0.05)
-r <- c(0.4,0.7)
+a <- seq(0, 100, 5)
+r <- c(40, 70)
 cbind(a,
       'a \%inRange\% r' = a \%inRange\% r,
       'a \%withinRange\% r' = a \%withinRange\% r)

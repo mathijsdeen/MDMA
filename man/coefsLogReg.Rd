@@ -7,24 +7,24 @@
 coefsLogReg(model, confint = TRUE, level = 0.95)
 }
 \arguments{
-\item{model}{object of class \code{glm}, with family parameter set to \code{binomial}}
+\item{model}{object of class \code{glm}, with family parameter set to \code{binomial}.}
 
-\item{confint}{indicates whether a confidence interval for the odds ratio should be returned}
+\item{confint}{indicates whether a confidence interval for the odds ratio should be returned.}
 
-\item{level}{the confidence level required}
+\item{level}{the confidence level required.}
 }
 \value{
-\code{coefsLogReg} returns the same table as \code{summary(object)$coefficients}, with the addition of the coefficients' odds ratios and their confidence intervals.
+\code{coefsLogReg} returns the same table as \code{summary(object)$coefficients},
+with the addition of the coefficients' odds ratios and their confidence intervals.
 }
 \description{
-Show odds ratios and their confidence intervals for logistic regression parameter estimates
+Show odds ratios and their confidence intervals for logistic regression parameter estimates.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 glm(formula = am ~  disp, family = binomial, data = mtcars) |>
- coefsLogReg()}
+ coefsLogReg()
 }
 \author{
 Mathijs Deen

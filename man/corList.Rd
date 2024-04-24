@@ -7,7 +7,7 @@
 corList(x, ...)
 }
 \arguments{
-\item{x}{a numeric vector, matrix or data frame}
+\item{x}{a numeric vector, matrix or data frame.}
 
 \item{...}{arguments passed to the \code{cor} function.}
 }
@@ -15,15 +15,13 @@ corList(x, ...)
 \code{corList} returns a list of correlations
 }
 \description{
-List all correlations in a correlation matrix without duplicates
+List all correlations in a correlation matrix without duplicates.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
-mtcars |>
-  dplyr::select(mpg, disp, hp, drat, wt, qsec) |>
-  corList(x, method="spearman")}
+mtcars[,c("mpg","disp", "hp", "drat", "wt", "qsec")] |>
+  corList(method="spearman")
 }
 \author{
 Mathijs Deen

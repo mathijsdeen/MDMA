@@ -7,26 +7,25 @@
 rci(x1, x2, rxx)
 }
 \arguments{
-\item{x1}{prescore}
+\item{x1}{prescore.}
 
-\item{x2}{postscore, same length as \code{x1}}
+\item{x2}{postscore, same length as \code{x1}.}
 
-\item{rxx}{internal consistency statistic}
+\item{rxx}{internal consistency statistic.}
 }
 \value{
-\code{rci} returns a vector of \code{length(x1)} with reliable change index scores
+\code{rci} returns a vector of \code{length(x1)} with reliable change index scores.
 }
 \description{
-computes the reliable change index according to Jacobson and Truax (1992).
+\code{rci} computes the reliable change index according to Jacobson and Truax (1992).
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
 library(MASS)
 set.seed(1)
 q <- mvrnorm(n=120, mu=c(40, 50), Sigma = matrix(c(56.25,45,45,56.25), ncol = 2), empirical = TRUE)
-cbind(q, rci(q[,1], q[,2], .8), rci(q[,1], q[,2], .8) > 1.96)}
+cbind(q, rci(q[,1], q[,2], .8), rci(q[,1], q[,2], .8) > 1.96)
 }
 \references{
 \itemize{

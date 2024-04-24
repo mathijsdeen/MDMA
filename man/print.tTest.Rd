@@ -7,15 +7,15 @@
 \method{print}{tTest}(x, ...)
 }
 \arguments{
-\item{x}{an object used to select a method}
+\item{x}{an object used to select a method.}
 
-\item{...}{further arguments passed to or from other methods}
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 prints the \code{tTest} object as a \code{htest} object.
 }
 \description{
-Print the output of a t test
+Print the output of a t test.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }

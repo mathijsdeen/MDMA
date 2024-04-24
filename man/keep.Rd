@@ -7,9 +7,9 @@
 keep(object, name, pos = 1, envir = as.environment(pos), inherits = FALSE)
 }
 \arguments{
-\item{object}{the object that is to be saved into \code{name}}
+\item{object}{the object that is to be saved into \code{name}.}
 
-\item{name}{the name of the new object, containing the value of \code{object}}
+\item{name}{the name of the new object, containing the value of \code{object}.}
 
 \item{pos}{where to do the assignment. See \code{?assign} for more details.}
 
@@ -20,7 +20,7 @@ See \code{?assign} for more details.}
 }
 \value{
 Upon saving \code{object} to \code{name}, the value of \code{object} is
-returned. This makes it suitable for pipes
+returned. This makes it suitable for pipes.
 }
 \description{
 \code{keep} saves an object to a new object. This is useful

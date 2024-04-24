@@ -7,19 +7,18 @@
 frequencies(x)
 }
 \arguments{
-\item{x}{vector of values}
+\item{x}{vector of values.}
 }
 \value{
-object of type \code{data.frame} containing frequencies, percentages and cumulative percentages
+object of type \code{data.frame} containing frequencies, percentages and cumulative percentages.
 }
 \description{
-Display frequency table with percentages and cumulative percentages
+Display frequency table with percentages and cumulative percentages.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
-\dontrun{
-frequencies(datasets::mtcars$carb)}
+frequencies(datasets::mtcars$carb)
 }
 \author{
 Mathijs Deen
