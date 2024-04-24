@@ -10,7 +10,8 @@ Maintainer: Mathijs Deen <dev@mathijsdeen.com>
 Description: Provides a variety of functions useful for data analysis,
     selection, manipulation, and graphics. 
 Depends: 
-    R (>= 4.2),
+    R (>= 4.2)
+Imports:
     stats,
     MASS,
     graphics,
