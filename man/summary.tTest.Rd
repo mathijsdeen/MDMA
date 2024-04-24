@@ -4,16 +4,16 @@
 \alias{summary.tTest}
 \title{Summarize outcome of a t test}
 \usage{
-\method{summary}{tTest}(object, ..., rnd = 3L)
+\method{summary}{tTest}(object, rnd = 3L, ...)
 }
 \arguments{
-\item{object}{object of class \code{htest} (i.e., the result of \code{mdma::tTest} or \code{stats::t.test})}
-
-\item{...}{other arguments of the summary generic (none are used)}
+\item{object}{object of class \code{htest} (i.e., the result of \code{mdma::tTest} or \code{stats::t.test}).}
 
 \item{rnd}{number of decimal places. Should have length 1 or 3. One value specifies the rounding
 value for the degrees of freedom, t statistic and p value all at once, while specifying three values
 gives the rounding values for the three statistics respectively.}
+
+\item{...}{other arguments of the summary generic (none are used).}
 }
 \value{
 \code{summary.htest} returns a typical APA-like output (without italics) for a t-test.

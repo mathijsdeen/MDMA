@@ -1,14 +1,13 @@
 #' @title List of correlation coefficients
-#' @description List all correlations in a correlation matrix without duplicates
+#' @description List all correlations in a correlation matrix without duplicates.
 #'
 #' `r lifecycle::badge("stable")`
-#' @param x a numeric vector, matrix or data frame
+#' @param x a numeric vector, matrix or data frame.
 #' @param ... arguments passed to the \code{cor} function.
 #' @return \code{corList} returns a list of correlations
-#' @examples \dontrun{
-#' mtcars |>
-#'   dplyr::select(mpg, disp, hp, drat, wt, qsec) |>
-#'   corList(x, method="spearman")}
+#' @examples
+#' mtcars[,c("mpg","disp", "hp", "drat", "wt", "qsec")] |>
+#'   corList(method="spearman")
 #' @author Mathijs Deen
 #' @importFrom stats cor
 #' @export
@@ -21,5 +20,3 @@ corList <- function(x, ...){
   out <- out[,c("var1","var2","cor")]
   return(out)
 }
-
-
