@@ -83,7 +83,7 @@ check.lm <- function(object, ...){
 }
 
 #' @method print check.lm
-print.check.lm <- function(x){
+print.check.lm <- function(x, ...){
   cat(sprintf("Case fit values and influence statistics: \n"))
   print(round(x$influence, 3))
   cat(sprintf("\n"))
