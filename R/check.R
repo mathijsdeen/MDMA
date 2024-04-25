@@ -1,12 +1,15 @@
 #' @title Check model for influential cases
+#' @description Perform checks for a linear model regarding influential cases and collinearity
+#'     numerically and graphically.
 #'
+#' `r lifecycle::badge("stable")`
 #' @param object object of class \code{lm}.
 #' @param ... other parameters (none are used at the moment).
 #'
-#' @return \code{check} returns a list containing a matrix with statistics regarding
+#' @return \code{check} returns a list containing two matrices with statistics regarding
 #'     influential cases and a vector of variance inflation factors. Furthermore, it
 #'     produces diagnostics plots.\cr
-#'     The return list contains two elements:\cr \cr
+#'     The return list contains three elements:\cr \cr
 #'     - \code{influence}, a \code{data.frame}, with observations in the model,
 #'     and the following variables:
 #'     \item{predicted.value}{The value predicted by the model.}
@@ -21,11 +24,18 @@
 #'     \item{influential}{Determines whether a case is influential on any of the
 #'     measures \code{dfb.<...>}, \code{dffit}, \code{cov.r}, \code{cook.d} or \code{hat}.
 #'     See \code{influential cases} for more information.}
-#'     \cr
+#'     \cr\cr
+#'     - \code{is.infl} is a \code{data.frame} indicating which influence measure(s)
+#'     is/are flagged per observation.
+#'     \cr\cr
 #'     - \code{vifs}, a vector containing variance inflation factors for the
 #'     variables in the model.
-#'     \cr
-#'     The generated plots are the plots produced by \code{plot.lm}, numbers 1 through 6.
+#'     \cr\cr
+#'     By default, the two \code{data.frame}s regarding influence measures only give the influence
+#'     measures for cases that are flagged as being influential. Influence measures for all cases
+#'     can be queried using \code{\link{print.check.lm}}.
+#'     \cr\cr
+#'     The generated plots are the plots produced by \code{\link[stats]{plot.lm}}, numbers 1 through 6.
 #' @section influential cases:
 #'
 #' For the influence indicators, the following rules are applied to check whether a case
@@ -59,17 +69,17 @@ check.lm <- function(object, ...){
   res <- object$residuals
   lev <- hatvalues(object)
   std.res <- rstandard(object)
-  influence <- influence.measures(object)
-  influential_case <- apply(influence$is.inf, 1L, any, na.rm = TRUE)
+  influenceM <- influence.measures(object)
+  influential_case <- apply(influenceM$is.inf, 1L, any, na.rm = TRUE)
   influence <- data.frame(predicted.value = pred,
                           residual = res,
                           std.residual = std.res,
-                          influence$infmat,
+                          influenceM$infmat,
                           influential = ifelse(influential_case, 1,0))
   terms <- labels(terms(object))
   n.terms <- length(terms)
   ifelse(n.terms > 1, vifs <- vif(object), vifs <- NA)
-  out <- list(influence = influence, vifs = vifs)
+  out <- list(influence = influence, is.inf  = data.frame(influenceM$is.inf), vifs = vifs)
   class(out) <- "check.lm"
   oldpar <- par(mfrow = c(3,2))
   on.exit(par(oldpar), add=TRUE)
@@ -82,10 +92,35 @@ check.lm <- function(object, ...){
   return(out)
 }
 
-#' @method print check.lm
-print.check.lm <- function(x, ...){
-  cat(sprintf("Case fit values and influence statistics: \n"))
-  print(round(x$influence, 3))
+#' @title Print lm check
+#' @description Print the check of lm object
+#'
+#' `r lifecycle::badge("stable")`
+#' @param x an object used to select a method.
+#' @param which.infl Indicate whether only influential cases (\code{influential}, the default)
+#'     or all cases (\code{all}) should be printed.
+#' @param ... further arguments passed to or from other methods (none are used).
+#' @return prints the \code{check.lm} object.
+#' @export
+#' @examples
+#' lm.1 <- lm(mpg ~ disp + wt, data = mtcars)
+#' chk.lm.1 <- check(lm.1)
+#' print(chk.lm.1, which.infl="all")
+#' @author Mathijs Deen
+print.check.lm <- function(x, which.infl = c("influential", "all"), ...){
+  which.infl <- match.arg(arg = which.infl, several.ok = FALSE)
+  if(which.infl == "influential"){
+    cat(sprintf("Influential cases: \n"))
+    print(round(x$influence[x$influence$influential == 1, ], 3))
+    cat(sprintf("\nIndication per influence measure\n"))
+    print(x$is.inf[x$influence$influential == 1,])
+
+  } else{
+    cat(sprintf("Case fit values and influence statistics: \n"))
+    print(round(x$influence, 3))
+    cat(sprintf("\nIndication per influence measure\n"))
+    print(x$is.inf)
+  }
   cat(sprintf("\n"))
   if(!anyNA(x$vifs)){
     cat(sprintf("Variance inflation factors: \n"))

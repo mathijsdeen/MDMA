@@ -12,10 +12,10 @@ check(object, ...)
 \item{...}{other parameters (none are used at the moment).}
 }
 \value{
-\code{check} returns a list containing a matrix with statistics regarding
+\code{check} returns a list containing two matrices with statistics regarding
 influential cases and a vector of variance inflation factors. Furthermore, it
 produces diagnostics plots.\cr
-The return list contains two elements:\cr \cr
+The return list contains three elements:\cr \cr
 - \code{influence}, a \code{data.frame}, with observations in the model,
 and the following variables:
 \item{predicted.value}{The value predicted by the model.}
@@ -30,14 +30,24 @@ the coefficient covariance matrix.}
 \item{influential}{Determines whether a case is influential on any of the
 measures \code{dfb.<...>}, \code{dffit}, \code{cov.r}, \code{cook.d} or \code{hat}.
 See \code{influential cases} for more information.}
-\cr
+\cr\cr
+- \code{is.infl} is a \code{data.frame} indicating which influence measure(s)
+is/are flagged per observation.
+\cr\cr
 - \code{vifs}, a vector containing variance inflation factors for the
 variables in the model.
-\cr
-The generated plots are the plots produced by \code{plot.lm}, numbers 1 through 6.
+\cr\cr
+By default, the two \code{data.frame}s regarding influence measures only give the influence
+measures for cases that are flagged as being influential. Influence measures for all cases
+can be queried using \code{\link{print.check.lm}}.
+\cr\cr
+The generated plots are the plots produced by \code{\link[stats]{plot.lm}}, numbers 1 through 6.
 }
 \description{
-Check model for influential cases
+Perform checks for a linear model regarding influential cases and collinearity
+numerically and graphically.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \section{influential cases}{
 
