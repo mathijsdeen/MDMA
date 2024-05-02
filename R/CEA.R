@@ -56,6 +56,9 @@ CEA <- function(data, group, cost, effect, B = 5000){
   }
 
   out.df <- data.frame(diffC, diffE)
+  out.df <- rbind(out.df,
+                  data.frame(diffC = diffC.true,
+                             diffE = diffE.true))
   out.df$ICERs <- out.df$diffC / out.df$diffE
 
   quadrant <- vector("character", length = B)
@@ -103,8 +106,10 @@ plot.CEA <- function(x,
                      ...){
   oldpar <- par(bty="l")
   on.exit(oldpar, add=TRUE)
-  plot(x    = x$stats$diffE,
-       y    = x$stats$diffC,
+  s <- x$stats
+
+  plot(x    = s$diffE,
+       y    = s$diffC,
        xlim = xlim,
        ylim = ylim,
        xlab = xlab,
