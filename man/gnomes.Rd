@@ -26,6 +26,7 @@ filled out the SLIM (Satisfaction List concerning Insulation of Mushrooms),
 a well-validated list that rates mushroom insulation satisfaction on a scale
 of 0 to 50. Differences between pre and post measurement were calculated on
 a higher-is-better basis. The squirrels were paid in acorns.
+
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \author{
