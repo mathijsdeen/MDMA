@@ -10,7 +10,7 @@ the following variables are available:
 \item \code{diffHATS}: the difference in Gnomes' HATS scores between the year
 before and the year after insulation.
 \item \code{Costs}: insulation costs in acorns.
-\item \code{insulationMethod}: methos of insulation, either \code{commonBeech} or
+\item \code{insulationMethod}: method of insulation, either \code{commonBeech} or
 \code{sessileOak}.
 }
 }
@@ -24,7 +24,7 @@ humidity. The insulation was done by the most skilled insulation animals in
 the forest: squirrels (Sciurus vulgaris).They either used the common insulation
 technique consisting of leafs of the common beech tree (Fagus sylvatica) or
 an experimental form of insulation using leafs of the less common (and thus,
-more expensive) sessile oak tree (Quercus petraea). Over the year before
+more expensive) sessile oak tree (Quercus petraea). For the year before
 insulation and the year after insulation, the gnomes filled out the Gnomes'
 Humidity and Thermal Satisfaction scale (Gnomes' HATS),
 a well-validated questionnaire that rates mushroom insulation satisfaction
