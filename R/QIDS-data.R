@@ -1,6 +1,6 @@
 #' @name QIDS
 #' @title QIDS depression data
-#' @description The \code{QIDS} dataframe consists of 100 observations of people that were
+#' @description The \code{QIDS} dataset consists of 100 observations of people that were
 #'     clinically diagnosed with a major depressive disorder and who filled out the QIDS-SR questionnaire. The data were simulated.
 #'
 #' `r lifecycle::badge("stable")`
