@@ -7,28 +7,34 @@
 \format{
 the following variables are available:
 \itemize{
-\item \code{diffSLIM}: the difference in SLIM scores between the year before and the year after insulation.
-\item \code{Cost}: insulation costs in acorns.
+\item \code{diffHATS}: the difference in Gnomes' HATS scores between the year
+before and the year after insulation.
+\item \code{Costs}: insulation costs in acorns.
+\item \code{insulationMethod}: methos of insulation, either \code{commonBeech} or
+\code{sessileOak}.
 }
 }
 \usage{
 gnomes
 }
 \description{
-The \code{gnomes} dataframe consists of 300 observations of gnomes
-that had their housing unit (i.e., their mushroom) insulated. The insulation
-was done by the most skilled insulation animals in the forest: squirrels (Sciurus vulgaris).
-They either used the common insulation technique consisting of leafs of the
-common beech tree (Fagus sylvatica) or an experimental form of insulation using leafs of the
-less common (and thus, more expensive) sessile oak tree (Quercus petraea).
-Over the year before insulation and the year after insulation, the gnomes
-filled out the SLIM (Satisfaction List concerning Insulation of Mushrooms),
-a well-validated list that rates mushroom insulation satisfaction on a scale
-of 0 to 50. Differences between pre and post measurement were calculated on
-a higher-is-better basis. The squirrels were paid in acorns.
+The \code{gnomes} dataset consists of 300 observations of gnomes
+that had their housing unit (i.e., their mushroom) insulated against cold and
+humidity. The insulation was done by the most skilled insulation animals in
+the forest: squirrels (Sciurus vulgaris).They either used the common insulation
+technique consisting of leafs of the common beech tree (Fagus sylvatica) or
+an experimental form of insulation using leafs of the less common (and thus,
+more expensive) sessile oak tree (Quercus petraea). Over the year before
+insulation and the year after insulation, the gnomes filled out the Gnomes'
+Humidity and Thermal Satisfaction scale (Gnomes' HATS),
+a well-validated questionnaire that rates mushroom insulation satisfaction
+w.r.t. humidity and temperature on a scale of 0 to 50. Differences between
+pre and post measurement were calculated on a higher-is-better basis.\cr\cr
+The squirrels were paid in acorns.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \author{
 Mathijs Deen
 }
+\keyword{datasets}
