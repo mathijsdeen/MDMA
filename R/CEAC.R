@@ -5,7 +5,11 @@
 #' @return \code{CEAC} returns data that can be plotted using \code{plot.CEAC}.
 #' @export
 #'
-#' @examples\dontrun{1}
+#' @examples
+#' CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+#'   CEAC() |>
+#'   plot(xlim = c(0,200),
+#'        xlab = "Cost-effectiveness threshold (acorns)")
 #' @author Mathijs Deen
 
 CEAC <- function(x){
@@ -35,7 +39,11 @@ CEAC <- function(x){
 #' @importFrom graphics arrows
 #' @export
 #'
-#' @examples\dontrun{1}
+#' @examples
+#' CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+#'   CEAC() |>
+#'   plot(xlim = c(0,200),
+#'        xlab = "Cost-effectiveness threshold (acorns)")
 #' @author Mathijs Deen
 plot.CEAC <- function(x,
                       xlab = "Cost-effectiveness threshold (\u20AC)",

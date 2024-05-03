@@ -31,9 +31,8 @@ and the ICER as a ratio of these two.}
 Cost-effectiveness analysis
 }
 \examples{
-\dontrun{
-1
-}
+CEA(gnomes, insulationMethod, Costs, diffHATS, 5000) |>
+  plot()
 }
 \author{
 Mathijs Deen

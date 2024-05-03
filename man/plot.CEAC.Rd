@@ -33,7 +33,10 @@ returns a plot
 Plot cost-effectiveness acceptability curve
 }
 \examples{
-\dontrun{1}
+CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+  CEAC() |>
+  plot(xlim = c(0,200),
+       xlab = "Cost-effectiveness threshold (acorns)")
 }
 \author{
 Mathijs Deen

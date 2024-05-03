@@ -16,9 +16,9 @@
 #' \item{ICER.true}{Observed incremental cost-effectiveness ratio.}
 #' @export
 #'
-#' @examples\dontrun{
-#' 1
-#' }
+#' @examples
+#' CEA(gnomes, insulationMethod, Costs, diffHATS, 5000) |>
+#'   plot()
 #' @author Mathijs Deen
 CEA <- function(data, group, cost, effect, B = 5000){
   arguments <- as.list(match.call())
