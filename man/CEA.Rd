@@ -26,6 +26,8 @@ and the ICER as a ratio of these two.}
 \item{diff.C.true}{Observed difference in costs.}
 \item{diff.E.true}{Observed difference in effects.}
 \item{ICER.true}{Observed incremental cost-effectiveness ratio.}
+\item{gr1}{First level of group variable.}
+\item{gr2}{Second level of group variable.}
 }
 \description{
 Cost-effectiveness analysis

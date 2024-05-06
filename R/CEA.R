@@ -14,6 +14,8 @@
 #' \item{diff.C.true}{Observed difference in costs.}
 #' \item{diff.E.true}{Observed difference in effects.}
 #' \item{ICER.true}{Observed incremental cost-effectiveness ratio.}
+#' \item{gr1}{First level of group variable.}
+#' \item{gr2}{Second level of group variable.}
 #' @export
 #'
 #' @examples
@@ -33,10 +35,13 @@ CEA <- function(data, group, cost, effect, B = 5000){
 
   ICERs <- diffC <- diffE <- vector(mode = "numeric", length = B)
 
-  c1 <- mean(costs[groups == grLevs[1]])
-  c2 <- mean(costs[groups == grLevs[2]])
-  e1 <- mean(effects[groups == grLevs[1]])
-  e2 <- mean(effects[groups == grLevs[2]])
+  gr1 <- grLevs[1]
+  gr2 <- grLevs[2]
+  c1 <- mean(costs[groups == gr1])
+  c2 <- mean(costs[groups == gr2])
+  e1 <- mean(effects[groups == gr1])
+  e2 <- mean(effects[groups == gr2])
+
   diffC.true <- c1 - c2
   diffE.true <- e1 - e2
   ICER.true <- diffC.true / diffE.true
@@ -47,10 +52,10 @@ CEA <- function(data, group, cost, effect, B = 5000){
 
   for(i in seq_along(1:B)){
     bSample <- d[Bmat[, i], ]
-    c1 <- mean(bSample$costs[bSample$groups == grLevs[1]])
-    c2 <- mean(bSample$costs[bSample$groups == grLevs[2]])
-    e1 <- mean(bSample$effects[bSample$groups == grLevs[1]])
-    e2 <- mean(bSample$effects[bSample$groups == grLevs[2]])
+    c1 <- mean(bSample$costs[bSample$groups == gr1])
+    c2 <- mean(bSample$costs[bSample$groups == gr2])
+    e1 <- mean(bSample$effects[bSample$groups == gr1])
+    e2 <- mean(bSample$effects[bSample$groups == gr2])
     diffC[i] <- c1 - c2
     diffE[i] <- e1 - e2
   }
@@ -74,7 +79,9 @@ CEA <- function(data, group, cost, effect, B = 5000){
   outlist <- list(stats      = out.df,
                   diffC.true = diffC.true,
                   diffE.true = diffE.true,
-                  ICER.true  = ICER.true)
+                  ICER.true  = ICER.true,
+                  gr1        = gr1,
+                  gr2        = gr2)
   class(outlist) <- "CEA"
   return(outlist)
 }
