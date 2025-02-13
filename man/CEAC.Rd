@@ -16,10 +16,9 @@ CEAC(x)
 Create data for cost-effectiveness acceptability curve
 }
 \examples{
-CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+CEA(gnomes, insulationMethod, Costs, diffHATS, 1000, "acorns") |>
   CEAC() |>
-  plot(xlim = c(0,200),
-       xlab = "Cost-effectiveness threshold (acorns)")
+  plot(xlim = c(0,200))
 }
 \author{
 Mathijs Deen

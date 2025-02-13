@@ -24,7 +24,7 @@ Retrieve Unicode character for a currency
 }
 \details{
 The input is evaluated case insensitive. In case the input is not supported, the function
-will fall back to the generic currency symbol (\code{"¤"}).
+will return the original input.
 }
 \examples{
 currency2unicode("dollar")

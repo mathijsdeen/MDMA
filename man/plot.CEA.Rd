@@ -9,7 +9,7 @@
   xlim = c(-1, 1) * max(abs(x$stats$diffE)),
   ylim = c(-1, 1) * max(abs(x$stats$diffC)),
   xlab = "Incremental effects",
-  ylab = "Incremental costs",
+  ylab = sprintf("Incremental costs (\%s)", x$currencyUC),
   las = 1,
   ...
 )
@@ -37,9 +37,8 @@
 Plot cost-effectiveness plane
 }
 \examples{
-\dontrun{
-1
-}
+CEA(gnomes, insulationMethod, Costs, diffHATS, 5000, "acorns") |>
+  plot()
 }
 \author{
 Mathijs Deen

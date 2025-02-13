@@ -4,7 +4,7 @@
 \alias{CEA}
 \title{Cost-effectiveness analysis}
 \usage{
-CEA(data, group, cost, effect, B = 5000)
+CEA(data, group, cost, effect, B = 5000, currency = "euro")
 }
 \arguments{
 \item{data}{a \code{data.frame} with rows representing observations in for
@@ -17,6 +17,11 @@ example a cost-effectiveness trial.}
 \item{effect}{effect variable in \code{data}.}
 
 \item{B}{number of bootstrap samples.}
+
+\item{currency}{currency unit. See ?currency2unicode for options that will return
+the a Unicode symbol that will be used in plot.CEA and plot.CEAC. If the parameter
+is not listed, the parameter itself will be used. This makes it possible to input
+a custom Unicode hex (e.g., \code{"\u00Ae"}). Defaults to "euro".}
 }
 \value{
 \code{CEA} returns a list (class \code{CEA}) with the following elements:
@@ -28,12 +33,14 @@ and the ICER as a ratio of these two.}
 \item{ICER.true}{Observed incremental cost-effectiveness ratio.}
 \item{gr1}{First level of group variable.}
 \item{gr2}{Second level of group variable.}
+\item{currencyUC}{The currency. Either in raw form (parameter \code{currency}) or as
+a Unicode hex.}
 }
 \description{
 Cost-effectiveness analysis
 }
 \examples{
-CEA(gnomes, insulationMethod, Costs, diffHATS, 5000) |>
+CEA(gnomes, insulationMethod, Costs, diffHATS, 5000, "acorns") |>
   plot()
 }
 \author{

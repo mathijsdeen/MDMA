@@ -6,10 +6,9 @@
 #' @export
 #'
 #' @examples
-#' CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+#' CEA(gnomes, insulationMethod, Costs, diffHATS, 1000, "acorns") |>
 #'   CEAC() |>
-#'   plot(xlim = c(0,200),
-#'        xlab = "Cost-effectiveness threshold (acorns)")
+#'   plot(xlim = c(0,200))
 #' @author Mathijs Deen
 
 CEAC <- function(x){
@@ -21,7 +20,10 @@ CEAC <- function(x){
   s$quadrant2[s$quadrant == "NW"] <- 2
   s <- s[order(s$quadrant2,s$ICERs), ]
   s$qntl <- 1:nrow(s)/nrow(s)
-  outlist <- list(s = s, ICER.true = x$ICER.true, diffC.true = x$diffC.true)
+  outlist <- list(s          = s,
+                  ICER.true  = x$ICER.true,
+                  diffC.true = x$diffC.true,
+                  currencyUC = x$currencyUC)
   class(outlist) <- "CEAC"
   return(outlist)
 }
@@ -40,13 +42,12 @@ CEAC <- function(x){
 #' @export
 #'
 #' @examples
-#' CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+#' CEA(gnomes, insulationMethod, Costs, diffHATS, 1000, "acorns") |>
 #'   CEAC() |>
-#'   plot(xlim = c(0,200),
-#'        xlab = "Cost-effectiveness threshold (acorns)")
+#'   plot(xlim = c(0,200))
 #' @author Mathijs Deen
 plot.CEAC <- function(x,
-                      xlab = "Cost-effectiveness threshold (\u20AC)",
+                      xlab = sprintf("Cost-effectiveness threshold (%s)", x$currencyUC),
                       ylab = "Probability that intervention is cost-effective",
                       las = 1,
                       xlim =c(0, max(x$s$ICERs)),

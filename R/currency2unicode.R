@@ -11,7 +11,7 @@
 #' @return \code{currency2unicode} the unicode character for a given currency.
 #' @details
 #' The input is evaluated case insensitive. In case the input is not supported, the function
-#' will fall back to the generic currency symbol (\code{"¤"}).
+#' will return the original input.
 #'
 #' @export
 #'
@@ -76,7 +76,7 @@ currency2unicode <- function(currency, ...) {
     return(currency_map[[currencyLC]])
   } else {
     #stop("Unknown currency. Available are: ", paste(names(currency_map), collapse = ", "))
-    warning(sprintf("'%s' is not a supported currency, falling back to generic currency symbol", currency),call. = FALSE)
-    return(currency_map[["currency"]])
+    #warning(sprintf("'%s' is not a supported currency, returning value '%s' instead.", currency, currency),call. = FALSE)
+    return(currency)
   }
 }

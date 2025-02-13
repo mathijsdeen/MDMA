@@ -6,7 +6,7 @@
 \usage{
 \method{plot}{CEAC}(
   x,
-  xlab = "Cost-effectiveness threshold (€)",
+  xlab = sprintf("Cost-effectiveness threshold (\%s)", x$currencyUC),
   ylab = "Probability that intervention is cost-effective",
   las = 1,
   xlim = c(0, max(x$s$ICERs)),
@@ -33,10 +33,9 @@ returns a plot
 Plot cost-effectiveness acceptability curve
 }
 \examples{
-CEA(gnomes, insulationMethod, Costs, diffHATS, 1000) |>
+CEA(gnomes, insulationMethod, Costs, diffHATS, 1000, "acorns") |>
   CEAC() |>
-  plot(xlim = c(0,200),
-       xlab = "Cost-effectiveness threshold (acorns)")
+  plot(xlim = c(0,200))
 }
 \author{
 Mathijs Deen
