@@ -29,9 +29,9 @@ wtp <- function(x, threshold = NULL, probability = NULL){
 
   if(is.null(threshold)){
     if(probability < 0 | probability > 1) stop("p should be within 0 and 1.")
-    have <- "probability of cost-effectiveness"
+    have <- "probability that the intervention is cost-effective"
     haveVal <- probability
-    want <- "Willingness to pay threshold"
+    want <- "willingness to pay threshold"
     if(probability %in% d$qntl) {
       val <- d$ICERs[d$qntl == probability]
     } else{
@@ -42,7 +42,7 @@ wtp <- function(x, threshold = NULL, probability = NULL){
   if(is.null(probability)){
     have <- "willingness to pay threshold"
     haveVal <- threshold
-    want <- "Probability of cost-effectiveness"
+    want <- "probability of cost-effectiveness"
     if(threshold %in% d$ICERs) {
       val <- d$qntl[df$ICERs == threshold]
     } else{
@@ -74,5 +74,5 @@ wtp <- function(x, threshold = NULL, probability = NULL){
 #'   wtp(threshold = 8)
 #' @author Mathijs Deen
 print.wtp <- function(x, ...){
-  cat(sprintf("%s for a %s of %.3f is %.3f", x$want, x$have, x$haveVal, x$val))
+  cat(sprintf("For the %s of %.3f, the %s is %.3f.", x$have, x$haveVal, x$want, x$val))
 }
