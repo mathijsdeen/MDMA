@@ -134,7 +134,7 @@ cat("Cohen's f²:", f2, "\n")
 effectsize::effectsize(full_model2)
 
 
-Dit lijkt goed te werken. Idee: schrijf een functie waar je een lme/lmer-object in kunt stoppen, en waarin glmmTMB wordt gebruikt om de f2-waarden te berekenen. Optimisatie van glmmTMB misschien helpen door als start values de parameterschattingen uit het object mee te geven? Dit voorkomt evt. ook discrepanties in de schattingen van glmmTMB t.o.v. het object.
+#Dit lijkt goed te werken. Idee: schrijf een functie waar je een lme/lmer-object in kunt stoppen, en waarin glmmTMB wordt gebruikt om de f2-waarden te berekenen. Optimisatie van glmmTMB misschien helpen door als start values de parameterschattingen uit het object mee te geven? Dit voorkomt evt. ook discrepanties in de schattingen van glmmTMB t.o.v. het object.
 
 #########
 
@@ -143,15 +143,15 @@ library(ClusterBootstrap)
 ############
 
 m.full <- lm(mpg ~ cyl + wt + drat, data = mtcars)
-m._cyl <- update(m.full, . ~ . - wt)
 
-summary(m.full)
-summary(m._cyl)
-
+R2full <- summary(m.full)$r.squared
 preds <- attr(terms(m.full), which = "term.labels")
 preds
-R2s <- rep(NA, length(preds))
+R2preds <- rep(NA_real_, length(preds))
 
 for(pred in seq_along(preds)){
-  R2s[pred] <- update(m.full, .~. -  preds)
+  R2preds[pred] <- summary(update(m.full, as.formula(paste(". ~ . -", preds[pred]))))$r.squared
 }
+
+options(scipen=999)
+(R2full - R2preds) / (1 - R2full) |> round(3)
