@@ -140,4 +140,18 @@ Dit lijkt goed te werken. Idee: schrijf een functie waar je een lme/lmer-object 
 
 library(ClusterBootstrap)
 
+############
 
+m.full <- lm(mpg ~ cyl + wt + drat, data = mtcars)
+m._cyl <- update(m.full, . ~ . - wt)
+
+summary(m.full)
+summary(m._cyl)
+
+preds <- attr(terms(m.full), which = "term.labels")
+preds
+R2s <- rep(NA, length(preds))
+
+for(pred in seq_along(preds)){
+  R2s[pred] <- update(m.full, .~. -  preds)
+}
