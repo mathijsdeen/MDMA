@@ -153,5 +153,20 @@ for(pred in seq_along(preds)){
   R2preds[pred] <- summary(update(m.full, as.formula(paste(". ~ . -", preds[pred]))))$r.squared
 }
 
-options(scipen=999)
+for(pred in seq_along(preds)){
+  R2preds[pred] <- m.full |>
+    update(as.formula(paste(". ~ . -", preds[pred]))) |>
+    summary() |>
+    (\(s) s$r.squared)()
+}
+
+options(scipen=1)
 (R2full - R2preds) / (1 - R2full) |> round(3)
+
+R2_cyl <- summary(lm(mpg~wt + drat, data = mtcars))$r.squared
+R2_wt <- summary(lm(mpg~ cyl + drat, data = mtcars))$r.squared
+R2_drat <- summary(lm(mpg~ cyl + wt, data = mtcars))$r.squared
+
+(R2full - R2_cyl) / (1 - R2full)
+(R2full - R2_wt) / (1 - R2full)
+(R2full - R2_drat) / (1 - R2full)
