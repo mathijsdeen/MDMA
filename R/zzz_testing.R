@@ -170,3 +170,51 @@ R2_drat <- summary(lm(mpg~ cyl + wt, data = mtcars))$r.squared
 (R2full - R2_cyl) / (1 - R2full)
 (R2full - R2_wt) / (1 - R2full)
 (R2full - R2_drat) / (1 - R2full)
+
+# test voor lm
+m.full <- lm(mpg ~ cyl * wt, data = mtcars)
+R2full <- summary(m.full)$r.squared
+f2Local.lm(m.full)
+m.cyl <- lm(mpg ~ cyl:wt + wt + drat, data = mtcars)
+R2cyl <- summary(m.cyl)$r.squared
+(R2full - R2cyl) / (1 - R2full)
+m.wt <- lm(mpg ~ cyl + cyl:wt + drat, data = mtcars)
+R2wt <- summary(m.wt)$r.squared
+(R2full - R2wt) / (1 - R2full)
+m.cyl_wt <- lm(mpg ~ cyl + wt + drat, data = mtcars)
+R2cyl_wt <- summary(m.cyl_wt)$r.squared
+(R2full - R2cyl_wt) / (1 - R2full)
+m.drat <- lm(mpg ~ cyl*wt, data = mtcars)
+R2drat <- summary(m.drat)$r.squared
+(R2full - R2drat) / (1 - R2full)
+
+View(f2Local.lm(m.full))
+
+attr(terms(m.full), which = "term.labels")
+
+# test voor glm
+## binary logistic
+library(performance)
+m <- glm(vs ~  cyl*wt + mpg, data = mtcars, family = "binomial")
+r2_coxsnell(m)
+f2Local(m, method = "r2_coxsnell") |> as.numeric()
+f2Local(m, method = "r2_efron")
+f2Local(m, method = "r2_nakagawa")
+
+## multinomial logistic
+library(mlogit)
+data("Fishing", package = "mlogit")
+Fish <- mlogit.data(Fishing, varying = c(2:9), shape = "wide", choice = "mode")
+model <- mlogit(mode ~ price + catch, data = Fish)
+f2Local(model)
+summary(model)
+model.price <- mlogit(mode ~ catch, data = Fish)
+model.catch <- mlogit(mode ~ price, data = Fish)
+summary(model.price)
+summary(model.catch)
+summary(model)
+r2_mcfadden(model)
+r2_mcfadden(model.price)
+r2_mcfadden(model.catch)
+(r2_mcfadden(model) - r2_mcfadden(model.price)) / (1 - r2_mcfadden(model))
+
