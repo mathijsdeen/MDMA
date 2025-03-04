@@ -2,8 +2,7 @@ f2Local <- function(object, ...){
   UseMethod("f2Local")
 }
 
-f2Local.lm <- function(object, method = r.squared){
-  method <- deparse(substitute(method))
+f2Local.lm <- function(object, method = "r.squared"){
   valid_methods <- c("r.squared", "adj.r.squared")
   if(!method %in% valid_methods) stop("invalid method.", call. = FALSE)
 
@@ -35,6 +34,7 @@ f2Local.glm <- function(object, method = "r2") {
   }
 
   R2full <- as.numeric(method_fun(object))
+  #return(R2full)
   preds <- attr(terms(object), which = "term.labels")
   R2preds <- rep(NA_real_, length(preds))
 
@@ -42,7 +42,8 @@ f2Local.glm <- function(object, method = "r2") {
     R2preds[pred] <- object |>
       update(as.formula(paste(". ~ . -", preds[pred]))) |>
       method_fun() |>
-      as.numeric()
+      as.numeric() |> round(5)
+    print(R2preds[pred])
   }
 
   f2s <- (R2full - R2preds) / (1 - R2full)
@@ -52,7 +53,25 @@ f2Local.glm <- function(object, method = "r2") {
   return(out)
 }
 
-f2Local.mlogit <- f2Local.glm
+f2Local.vglm <- function(object, method = "mcfadden"){
+  valid_methods <- c("mcfadden", "nagelkerke", "efron")
+  if(!method %in% valid_methods) stop("invalid method.", call.=FALSE)
+
+  if(method == "mcfadden"){
+    method_fun <- function(){
+      cat("mcfadden")
+    }
+  }else if(method == "nagelkerke"){
+    method_fun <- function(){
+      cat("nagelkerke")
+    }
+  }else if(method == "efron"){
+    method_fun <- function(){
+      cat("efron")
+    }
+  }
+  method_fun()
+}
 
 print.f2Local <- function(x, ...){
   out <- data.frame(variable = x$variable,
