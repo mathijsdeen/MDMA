@@ -174,7 +174,7 @@ R2_drat <- summary(lm(mpg~ cyl + wt, data = mtcars))$r.squared
 # test voor lm
 m.full <- lm(mpg ~ cyl * wt, data = mtcars)
 R2full <- summary(m.full)$r.squared
-f2Local.lm(m.full)
+f2Local.lm(m.full, method="r.squared")
 m.cyl <- lm(mpg ~ cyl:wt + wt + drat, data = mtcars)
 R2cyl <- summary(m.cyl)$r.squared
 (R2full - R2cyl) / (1 - R2full)
@@ -205,6 +205,7 @@ f2Local(m, method = "r2_nakagawa")
 library(mlogit)
 data("Fishing", package = "mlogit")
 Fish <- mlogit.data(Fishing, varying = c(2:9), shape = "wide", choice = "mode")
+View(Fish)
 model <- mlogit(mode ~ price + catch, data = Fish)
 f2Local(model)
 summary(model)
@@ -218,3 +219,54 @@ r2_mcfadden(model.price)
 r2_mcfadden(model.catch)
 (r2_mcfadden(model) - r2_mcfadden(model.price)) / (1 - r2_mcfadden(model))
 
+Fish2 <- mlogit.data(Fishing, choice = "mode", shape = "wide")
+View(Fish2)
+
+chatUpLines <- read.delim("https://studysites.sagepub.com/dsur/study/DSUR%20Data%20Files/Chapter%208/Chat-Up%20Lines.dat",
+                          header = TRUE, sep = "\t")
+chatUpLines$Gender <- relevel(as.factor(chatUpLines$Gender), ref = 2)
+chatUpLines_ML <- mlogit.data(chatUpLines, choice = "Success", shape = "wide")
+#View(chatUpLines_ML)
+m.chatUpLines <- mlogit(Success ~ 1 | Good_Mate + Funny*Gender + Gender*Sex,
+                        data = chatUpLines_ML, method = "nr",
+                        reflevel = "No response/Walk Off", print.level = 0)
+summary(m.chatUpLines)
+
+library(VGAM)
+m.cUL <- vglm(Success ~ Good_Mate + Funny + Gender + Sex + Gender:Sex + Funny:Gender,
+              family = multinomial, data = chatUpLines)
+summary(m.cUL)
+r2_efron(m.cUL)
+
+class(m.cUL)
+performance::r2(m.cUL)
+
+m.chatUpLines_GoodMate <- mlogit(Success ~ 1 | Funny + Gender + Sex + Gender:Sex + Funny:Gender,
+                                 data = chatUpLines_ML, method = "nr",
+                                 reflevel = "No response/Walk Off", print.level = 0)
+summary(m.chatUpLines_GoodMate)
+library(performance)
+R2full <- r2_mcfadden(m.chatUpLines)
+R2Good_mate <- r2_mcfadden(m.chatUpLines_GoodMate)
+R2Good_mate
+
+(R2full - R2Good_mate) / (1 - R2full)
+
+f2Local.vglm(3,method="efron")
+m.cUL@family |> View()
+
+R2.vglm(model, method = "efron")
+##########
+model
+update(model, formula = model@y ~ 1)
+vglm(Success ~ 1, data = chatUpLines, family = multinomial)
+model <- vglm(Success ~ Good_Mate + Funny + Gender*Sex, data = chatUpLines,
+              family = multinomial)
+logLik_full <- logLik(model)
+
+pred_values <- predict(model, type="response")
+
+pred_values
+
+max.col(model@y, ties.method="first")
+View(model@y)
