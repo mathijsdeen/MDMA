@@ -94,6 +94,18 @@ f2Local.vglm <- function(object, method = "mcfadden", ...){
   return(out)
 }
 
+#################### Next: mixed models! ####################
+# Use Nakagawa's R^2, more specifically its marginal R^2.   #
+# Try to figure out how to generalize the implementation of #
+# the full model's random effects covariance parameters     #
+# into the reduced models.                                  #
+#                                                           #
+# Hic sunt dracones.                                        #
+#############################################################
+f2Local.glmmTMB <- function(object, method = "nakagawa", type="marginal", ...){
+  return(NULL)
+}
+
 #' @export
 print.f2Local <- function(x, ...){
   out <- data.frame(variable = x$variable,
