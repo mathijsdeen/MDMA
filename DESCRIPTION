@@ -18,6 +18,7 @@ Imports:
     methods,
     grDevices,
     car
+Suggests: VGAM
 License: GPL-3
 URL: https://github.com/mathijsdeen/MDMA
 BugReports: https://github.com/mathijsdeen/MDMA/issues
