@@ -14,10 +14,13 @@ f2Local(object, method, ...)
 \item{...}{currently not used}
 }
 \value{
-\code{f2Local} returns a list containing \eqn{f^2} values for every parameter in a model.
+\code{f2Local} returns a list containing \eqn{f^2} values for every parameter in a model. For the \code{glmmTMB}
+class, a list of all reduced models is returned as well. In a future version, this will be available for other classes as well.
 }
 \description{
 Calculate local \eqn{f^2} for (generalized) linear models
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \details{
 The following methods can be specified:
@@ -27,6 +30,9 @@ The following methods can be specified:
 in the \code{performance} package.
 \item \code{vglm} objects: \code{mcfadden}, \code{nagelkerke}, \code{coxsnell}, \code{tjur} and \code{efron}, as implemented
 in the \code{R2.vglm} function.
+\item \code{glmmTMB} objects: \code{nakagawa}, as implemented in the \code{performance} package. It can also be
+specified whether the marginal or the conditional \eqn{R^2} should be used, however only the
+marginal \eqn{R^2} would make sense.
 }
 
 Note that for multinomial models, using \code{method="efron"} gives questionable with \code{glm} objects and
@@ -34,7 +40,16 @@ is not possible for \code{vglm} objects. For \code{glm} objects, \code{method=co
 response is not binary.
 }
 \examples{
-model <- lm(mpg ~ cyl + wt*drat, data = mtcars)
+# linear model
+model1 <- lm(mpg ~ cyl + wt*drat, data = mtcars)
+f2Local(model1)
+
+# generalized linear mixed model
+if(require(ClusterBootstrap) & require(glmmTMB)){
+  model2 <- glmmTMB(pos ~ treat*time + (1 + time | id), data = medication)
+  f2Local(model2)
+}
+
 }
 \author{
 Mathijs Deen

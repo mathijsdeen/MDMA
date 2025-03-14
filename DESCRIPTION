@@ -12,13 +12,18 @@ Description: Provides a variety of functions useful for data analysis,
 Depends: 
     R (>= 4.2)
 Imports:
-    stats,
-    MASS,
+    car,
     graphics,
-    methods,
     grDevices,
-    car
-Suggests: VGAM
+    lme4,
+    MASS,
+    methods,
+    performance,
+    stats
+Suggests: 
+    ClusterBootstrap,
+    glmmTMB,
+    VGAM
 License: GPL-3
 URL: https://github.com/mathijsdeen/MDMA
 BugReports: https://github.com/mathijsdeen/MDMA/issues

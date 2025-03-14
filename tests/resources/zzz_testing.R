@@ -102,9 +102,9 @@ library(performance)
 library(nlme)
 
 # Fit het volledige model
-full_model <- glmmTMB(rate ~ QB + pressure + (1 + QB | Subject), data = Dialyzer)
+full_model <- glmmTMB(rate ~ pressure + index + (1 + QB | Subject), data = Dialyzer)
 summary(full_model)
-
+f2Local.glmmTMB(full_model)
 # Haal de random-effect standaarddeviatie op
 random_sd <- attr(VarCorr(full_model)$cond$Subject, "stddev")  # Standaarddeviatie
 print(random_sd)
