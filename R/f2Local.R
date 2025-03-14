@@ -185,5 +185,9 @@ print.f2Local <- function(x, ...){
 }
 
 
-
+# To do:
+#
+# * Like for glmmTMB, put reduced models in out list for other classes as well.
+# * Find out whether lmer objects can be refitted in glmmTMB easily.
+# * mind the REML default (FALSE) for glmmTMB!
 
