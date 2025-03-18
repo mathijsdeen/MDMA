@@ -174,7 +174,8 @@ R2_drat <- summary(lm(mpg~ cyl + wt, data = mtcars))$r.squared
 # test voor lm
 m.full <- lm(mpg ~ cyl * wt, data = mtcars)
 R2full <- summary(m.full)$r.squared
-f2Local.lm(m.full, method="r.squared")
+ff <- f2Local(m.full, method="r.squared")
+ff$reduced_models
 m.cyl <- lm(mpg ~ cyl:wt + wt + drat, data = mtcars)
 R2cyl <- summary(m.cyl)$r.squared
 (R2full - R2cyl) / (1 - R2full)
