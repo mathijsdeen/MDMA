@@ -65,7 +65,7 @@ f2Local.lm <- function(object, method = "r.squared", ...){
       (\(s) s[[method]])()
   }
 
-  f2s <- (R2full - R2preds) / (1 - R2full)
+  f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable = preds,
               f2Local  = f2s,
               reduced_models = reduced_models)
@@ -97,7 +97,7 @@ f2Local.glm <- function(object, method = "r2", ...) {
       as.numeric()
   }
 
-  f2s <- (R2full - R2preds) / (1 - R2full)
+  f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable = preds,
               f2Local  = f2s,
               reduced_models = reduced_models)
@@ -127,7 +127,7 @@ f2Local.vglm <- function(object, method = "mcfadden", ...){
     reduced_models[[pred]] <- reduced_model
     R2preds[pred] <- as.numeric(R2.vglm(reduced_model, method = method))
   }
-  f2s <- (R2full - R2preds) / (1 - R2full)
+  f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable = preds,
               f2Local  = f2s,
               reduced_models = reduced_models)
@@ -174,7 +174,7 @@ f2Local.glmmTMB <- function(object, method = "nakagawa", type = "marginal", ...)
     }
     R2preds[i] <- R2_reduced_result[[whichNakagawa]] |> as.numeric()
   }
-  f2s <- (R2full - R2preds) / (1 - R2full)
+  f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable       = preds,
               f2Local        = f2s,
               reduced_models = reduced_models)
@@ -213,9 +213,11 @@ print.f2Local <- function(x, ...){
   return(null_model)
 }
 
+.calculateR2 <- function(R2full, R2reduced){
+  return((R2full - R2reduced) / (1 - R2full))
+}
 
 # To do:
 #
 # * camel casing
-# * calculate f2s with a helper (facilitates testing)
 
