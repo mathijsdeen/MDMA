@@ -198,7 +198,9 @@ library(performance)
 m <- glm(vs ~  cyl*wt + mpg, data = mtcars, family = "binomial")
 r2_coxsnell(m)
 f2Local(m, method = "coxsnell")
-f2Local(m, method = "efro")
+ffff<- f2Local(m, method = "efron")
+ffff$reduced_models
+
 f2Local(m, method = "r2_nakagawa")
 
 ## multinomial logistic
@@ -248,7 +250,8 @@ r2_nagelkerke(m.chatUpLines)
 R2.vglm(m.vglm, method="mcfadden")
 R2.vglm(m.vglm, method="nagelkerke")
 r2_nagelkerke(m.vglm)
-f2Local.vglm(m.vglm)
+ff <- f2Local(m.vglm)
+ff$reduced_models$Funny
 
 m.vglm_Good_Mate <- update(m.vglm, as.formula(paste(". ~ . -", "Good_Mate")))
 summary(m.vglm)
