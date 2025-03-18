@@ -104,7 +104,7 @@ library(nlme)
 # Fit het volledige model
 full_model <- glmmTMB(rate ~ pressure + index + (1 + QB | Subject), data = Dialyzer)
 summary(full_model)
-f2Local.glmmTMB(full_model)
+f2Local(full_model)$reducedModels
 # Haal de random-effect standaarddeviatie op
 random_sd <- attr(VarCorr(full_model)$cond$Subject, "stddev")  # Standaarddeviatie
 print(random_sd)
@@ -175,7 +175,7 @@ R2_drat <- summary(lm(mpg~ cyl + wt, data = mtcars))$r.squared
 m.full <- lm(mpg ~ cyl * wt, data = mtcars)
 R2full <- summary(m.full)$r.squared
 ff <- f2Local(m.full, method="r.squared")
-ff$reduced_models
+ff
 m.cyl <- lm(mpg ~ cyl:wt + wt + drat, data = mtcars)
 R2cyl <- summary(m.cyl)$r.squared
 (R2full - R2cyl) / (1 - R2full)
@@ -201,7 +201,7 @@ r2_coxsnell(m)
 f2Local(m, method = "coxsnell")
 ffff<- f2Local(m, method = "efron")
 ffff$reduced_models
-
+ffff$reducedModels
 f2Local(m, method = "r2_nakagawa")
 
 ## multinomial logistic
@@ -252,7 +252,7 @@ R2.vglm(m.vglm, method="mcfadden")
 R2.vglm(m.vglm, method="nagelkerke")
 r2_nagelkerke(m.vglm)
 ff <- f2Local(m.vglm)
-ff$reduced_models$Funny
+ff$reducedModels
 
 m.vglm_Good_Mate <- update(m.vglm, as.formula(paste(". ~ . -", "Good_Mate")))
 summary(m.vglm)
