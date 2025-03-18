@@ -1,5 +1,5 @@
-#' @title Calculate local \eqn{f^2} for (generalized) linear models
-#' @description Calculate local \eqn{f^2} for (generalized) linear models
+#' @title Local \eqn{f^2}
+#' @description Calculate local \eqn{f^2} for (generalized) linear (mixed) models
 #'
 #' `r lifecycle::badge("experimental")`
 #' @param object a model object (currently supported: `lm`, `glm`, `vglm`).
@@ -42,52 +42,72 @@ f2Local <- function(object, method, ...){
 }
 
 #' @export
+#' @describeIn f2Local Method for `lm` object
+#' @method f2Local lm
 f2Local.lm <- function(object, method = "r.squared", ...){
   valid_methods <- c("r.squared", "adj.r.squared")
   if(!method %in% valid_methods) stop("invalid method.", call. = FALSE)
 
   R2full <- summary(object)[[method]]
   preds <- attr(terms(object), which = "term.labels")
-  R2preds <- rep(NA_real_, length(preds))
+  n_preds <- length(preds)
+  R2preds <- rep(NA_real_, n_preds)
+
+  reduced_models <- vector("list", n_preds)
+  names(reduced_models) <- preds
 
   for(pred in seq_along(preds)){
-    R2preds[pred] <- object |>
-      update(as.formula(paste(". ~ . -", preds[pred]))) |>
+    reduced_model <- update(object,
+                            formula = as.formula(paste(". ~ . -", preds[pred])))
+    reduced_models[[pred]] <- reduced_model
+    R2preds[pred] <- reduced_model |>
       summary() |>
       (\(s) s[[method]])()
   }
 
   f2s <- (R2full - R2preds) / (1 - R2full)
   out <- list(variable = preds,
-              f2Local  = f2s)
+              f2Local  = f2s,
+              reduced_models = reduced_models)
   class(out) <- "f2Local"
   return(out)
 }
 
 #' @export
+#' @describeIn f2Local Method for `glm` object
+#' @method f2Local glm
 f2Local.glm <- function(object, method = "r2", ...) {
   if(method != "r2") method <- paste0("r2_", method)
   method_fun <- get(method, envir = asNamespace("performance"), inherits = FALSE)
 
   R2full <- as.numeric(method_fun(object))
   preds <- attr(terms(object), which = "term.labels")
-  R2preds <- rep(NA_real_, length(preds))
+  n_preds <- length(preds)
+  R2preds <- rep(NA_real_, n_preds)
+
+  reduced_models <- vector("list", n_preds)
+  names(reduced_models) <- preds
 
   for(pred in seq_along(preds)){
-    R2preds[pred] <- object |>
-      update(as.formula(paste(". ~ . -", preds[pred]))) |>
+    reduced_model <- update(object,
+                            formula = as.formula(paste(". ~ . -", preds[pred])))
+    reduced_models[[pred]] <- reduced_model
+    R2preds[pred] <- reduced_model |>
       method_fun() |>
       as.numeric()
   }
 
   f2s <- (R2full - R2preds) / (1 - R2full)
   out <- list(variable = preds,
-              f2Local  = f2s)
+              f2Local  = f2s,
+              reduced_models = reduced_models)
   class(out) <- "f2Local"
   return(out)
 }
 
 #' @export
+#' @describeIn f2Local Method for `vglm` object
+#' @method f2Local vglm
 f2Local.vglm <- function(object, method = "mcfadden", ...){
   valid_methods <- c("mcfadden", "nagelkerke", "efron", "coxsnell", "tjur")
   if(!method %in% valid_methods) stop("invalid method.", call.=FALSE)
@@ -95,22 +115,31 @@ f2Local.vglm <- function(object, method = "mcfadden", ...){
   R2full <- R2.vglm(object, method = method)
 
   preds <- attr(terms(object), which = "term.labels")
-  R2preds <- rep(NA_real_, length(preds))
+  n_preds <- length(preds)
+  R2preds <- rep(NA_real_, n_preds)
+
+  reduced_models <- vector("list", n_preds)
+  names(reduced_models) <- preds
 
   for(pred in seq_along(preds)){
-    R2preds[pred] <- object |>
-      update(as.formula(paste(". ~ . -", preds[pred]))) |>
-      R2.vglm(method = method) |>
-      as.numeric()
+    reduced_model <- update(object,
+                            formula = as.formula(paste(". ~ . -", preds[pred])))
+    reduced_models[[pred]] <- reduced_model
+    R2preds[pred] <- as.numeric(R2.vglm(reduced_model, method = method))
   }
   f2s <- (R2full - R2preds) / (1 - R2full)
   out <- list(variable = preds,
-              f2Local  = f2s)
+              f2Local  = f2s,
+              reduced_models = reduced_models)
   class(out) <- "f2Local"
   return(out)
 }
 
 #' @export
+#' @describeIn f2Local Method for `glmmTMB` object
+#' @param type indicate whether the marginal (fixed effects only) or the conditional (fixed + random effects)
+#' \eqn{R^2} should be used. Default value is `marginal`, using `conditional` might be considered ambiguous.
+#' @method f2Local glmmTMB
 f2Local.glmmTMB <- function(object, method = "nakagawa", type = "marginal", ...) {
   valid_methods <- c("nakagawa")
   if (!method %in% valid_methods) stop("invalid method.", call. = FALSE)

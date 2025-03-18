@@ -2,9 +2,21 @@
 % Please edit documentation in R/f2Local.R
 \name{f2Local}
 \alias{f2Local}
-\title{Calculate local \eqn{f^2} for (generalized) linear models}
+\alias{f2Local.lm}
+\alias{f2Local.glm}
+\alias{f2Local.vglm}
+\alias{f2Local.glmmTMB}
+\title{Local \eqn{f^2}}
 \usage{
 f2Local(object, method, ...)
+
+\method{f2Local}{lm}(object, method = "r.squared", ...)
+
+\method{f2Local}{glm}(object, method = "r2", ...)
+
+\method{f2Local}{vglm}(object, method = "mcfadden", ...)
+
+\method{f2Local}{glmmTMB}(object, method = "nakagawa", type = "marginal", ...)
 }
 \arguments{
 \item{object}{a model object (currently supported: \code{lm}, \code{glm}, \code{vglm}).}
@@ -12,13 +24,16 @@ f2Local(object, method, ...)
 \item{method}{method for calculation of \eqn{R^2}, which is needed for the calculation of \eqn{f^2}. See Details.}
 
 \item{...}{currently not used}
+
+\item{type}{indicate whether the marginal (fixed effects only) or the conditional (fixed + random effects)
+\eqn{R^2} should be used. Default value is \code{marginal}, using \code{conditional} might be considered ambiguous.}
 }
 \value{
 \code{f2Local} returns a list containing \eqn{f^2} values for every parameter in a model. For the \code{glmmTMB}
 class, a list of all reduced models is returned as well. In a future version, this will be available for other classes as well.
 }
 \description{
-Calculate local \eqn{f^2} for (generalized) linear models
+Calculate local \eqn{f^2} for (generalized) linear (mixed) models
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
@@ -39,6 +54,17 @@ Note that for multinomial models, using \code{method="efron"} gives questionable
 is not possible for \code{vglm} objects. For \code{glm} objects, \code{method=coxsnell} cannot be used when the
 response is not binary.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{f2Local(lm)}: Method for \code{lm} object
+
+\item \code{f2Local(glm)}: Method for \code{glm} object
+
+\item \code{f2Local(vglm)}: Method for \code{vglm} object
+
+\item \code{f2Local(glmmTMB)}: Method for \code{glmmTMB} object
+
+}}
 \examples{
 # linear model
 model1 <- lm(mpg ~ cyl + wt*drat, data = mtcars)
