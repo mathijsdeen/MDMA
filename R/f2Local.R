@@ -45,22 +45,22 @@ f2Local <- function(object, method, ...){
 #' @describeIn f2Local Method for `lm` object
 #' @method f2Local lm
 f2Local.lm <- function(object, method = "r.squared", ...){
-  valid_methods <- c("r.squared", "adj.r.squared")
-  if(!method %in% valid_methods) stop("invalid method.", call. = FALSE)
+  validMethods <- c("r.squared", "adj.r.squared")
+  if(!method %in% validMethods) stop("invalid method.", call. = FALSE)
 
   R2full <- summary(object)[[method]]
   preds <- attr(terms(object), which = "term.labels")
-  n_preds <- length(preds)
-  R2preds <- rep(NA_real_, n_preds)
+  nPreds <- length(preds)
+  R2preds <- rep(NA_real_, nPreds)
 
-  reduced_models <- vector("list", n_preds)
-  names(reduced_models) <- preds
+  reducedModels <- vector("list", nPreds)
+  names(reducedModels) <- preds
 
   for(pred in seq_along(preds)){
-    reduced_model <- update(object,
-                            formula = as.formula(paste(". ~ . -", preds[pred])))
-    reduced_models[[pred]] <- reduced_model
-    R2preds[pred] <- reduced_model |>
+    reducedModel <- update(object,
+                           formula = as.formula(paste(". ~ . -", preds[pred])))
+    reducedModels[[pred]] <- reducedModel
+    R2preds[pred] <- reducedModel |>
       summary() |>
       (\(s) s[[method]])()
   }
@@ -68,7 +68,7 @@ f2Local.lm <- function(object, method = "r.squared", ...){
   f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable = preds,
               f2Local  = f2s,
-              reduced_models = reduced_models)
+              reducedModels = reducedModels)
   class(out) <- "f2Local"
   return(out)
 }
@@ -78,29 +78,29 @@ f2Local.lm <- function(object, method = "r.squared", ...){
 #' @method f2Local glm
 f2Local.glm <- function(object, method = "r2", ...) {
   if(method != "r2") method <- paste0("r2_", method)
-  method_fun <- get(method, envir = asNamespace("performance"), inherits = FALSE)
+  methodFun <- get(method, envir = asNamespace("performance"), inherits = FALSE)
 
-  R2full <- as.numeric(method_fun(object))
+  R2full <- as.numeric(methodFun(object))
   preds <- attr(terms(object), which = "term.labels")
-  n_preds <- length(preds)
-  R2preds <- rep(NA_real_, n_preds)
+  nPreds <- length(preds)
+  R2preds <- rep(NA_real_, nPreds)
 
-  reduced_models <- vector("list", n_preds)
-  names(reduced_models) <- preds
+  reducedModels <- vector("list", nPreds)
+  names(reducedModels) <- preds
 
   for(pred in seq_along(preds)){
-    reduced_model <- update(object,
-                            formula = as.formula(paste(". ~ . -", preds[pred])))
-    reduced_models[[pred]] <- reduced_model
-    R2preds[pred] <- reduced_model |>
-      method_fun() |>
+    reducedModel <- update(object,
+                           formula = as.formula(paste(". ~ . -", preds[pred])))
+    reducedModels[[pred]] <- reducedModel
+    R2preds[pred] <- reducedModel |>
+      methodFun() |>
       as.numeric()
   }
 
   f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable = preds,
               f2Local  = f2s,
-              reduced_models = reduced_models)
+              reducedModels = reducedModels)
   class(out) <- "f2Local"
   return(out)
 }
@@ -109,28 +109,28 @@ f2Local.glm <- function(object, method = "r2", ...) {
 #' @describeIn f2Local Method for `vglm` object
 #' @method f2Local vglm
 f2Local.vglm <- function(object, method = "mcfadden", ...){
-  valid_methods <- c("mcfadden", "nagelkerke", "efron", "coxsnell", "tjur")
-  if(!method %in% valid_methods) stop("invalid method.", call.=FALSE)
+  validMethods <- c("mcfadden", "nagelkerke", "efron", "coxsnell", "tjur")
+  if(!method %in% validMethods) stop("invalid method.", call.=FALSE)
 
   R2full <- R2.vglm(object, method = method)
 
   preds <- attr(terms(object), which = "term.labels")
-  n_preds <- length(preds)
-  R2preds <- rep(NA_real_, n_preds)
+  nPreds <- length(preds)
+  R2preds <- rep(NA_real_, nPreds)
 
-  reduced_models <- vector("list", n_preds)
-  names(reduced_models) <- preds
+  reducedModels <- vector("list", nPreds)
+  names(reducedModels) <- preds
 
   for(pred in seq_along(preds)){
-    reduced_model <- update(object,
-                            formula = as.formula(paste(". ~ . -", preds[pred])))
-    reduced_models[[pred]] <- reduced_model
-    R2preds[pred] <- as.numeric(R2.vglm(reduced_model, method = method))
+    reducedModel <- update(object,
+                           formula = as.formula(paste(". ~ . -", preds[pred])))
+    reducedModels[[pred]] <- reducedModel
+    R2preds[pred] <- as.numeric(R2.vglm(reducedModel, method = method))
   }
   f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable = preds,
               f2Local  = f2s,
-              reduced_models = reduced_models)
+              reducedModels = reducedModels)
   class(out) <- "f2Local"
   return(out)
 }
@@ -141,43 +141,43 @@ f2Local.vglm <- function(object, method = "mcfadden", ...){
 #' \eqn{R^2} should be used. Default value is `marginal`, using `conditional` might be considered ambiguous.
 #' @method f2Local glmmTMB
 f2Local.glmmTMB <- function(object, method = "nakagawa", type = "marginal", ...) {
-  valid_methods <- c("nakagawa")
-  if (!method %in% valid_methods) stop("invalid method.", call. = FALSE)
+  validMethods <- c("nakagawa")
+  if (!method %in% validMethods) stop("invalid method.", call. = FALSE)
   if (!type %in% c("marginal", "conditional")) stop("invalid type.", call. = FALSE)
   bb <- `[[`
   whichNakagawa <- paste0("R2_", type)
 
   ranefStructure <- .extractRandomEffects(object)
-  null_model <- .generateNullModel(object)
-  R2_full_result <- suppressWarnings(r2_nakagawa(object, null_model = null_model))
-  if (is.null(R2_full_result) || is.na(R2_full_result[[whichNakagawa]])) {
+  nullModel <- .generateNullModel(object)
+  R2FullResult <- suppressWarnings(r2_nakagawa(object, nullModel = nullModel))
+  if (is.null(R2FullResult) || is.na(R2FullResult[[whichNakagawa]])) {
     stop("r2_nakagawa() returned NA for the full model. Check model compatibility.")
   }
-  R2full <- R2_full_result[[whichNakagawa]]
+  R2full <- R2FullResult[[whichNakagawa]]
 
   preds <- attr(terms(object), which = "term.labels")
-  n_preds <- length(preds)
-  R2preds <- numeric(n_preds)
+  nPreds <- length(preds)
+  R2preds <- numeric(nPreds)
 
-  reduced_models <- vector("list", n_preds)
-  names(reduced_models) <- preds
+  reducedModels <- vector("list", nPreds)
+  names(reducedModels) <- preds
   for (i in seq_along(preds)) {
     pred <- preds[i]
-    reduced_model <- update(object,
-                            formula = as.formula(paste(". ~ . -", pred)),
-                            start   = ranefStructure$start,
-                            map     = ranefStructure$map)
-    reduced_models[[i]] <- reduced_model
-    R2_reduced_result <- suppressWarnings(r2_nakagawa(reduced_model, null_model = null_model))
-    if (is.null(R2_reduced_result) || is.na(R2_reduced_result[[whichNakagawa]])) {
+    reducedModel <- update(object,
+                           formula = as.formula(paste(". ~ . -", pred)),
+                           start   = ranefStructure$start,
+                           map     = ranefStructure$map)
+    reducedModels[[i]] <- reducedModel
+    R2ReducedResult <- suppressWarnings(r2_nakagawa(reducedModel, nullModel = nullModel))
+    if (is.null(R2ReducedResult) || is.na(R2ReducedResult[[whichNakagawa]])) {
       stop(paste("r2_nakagawa() returned NA for predictor:", pred))
     }
-    R2preds[i] <- R2_reduced_result[[whichNakagawa]] |> as.numeric()
+    R2preds[i] <- R2ReducedResult[[whichNakagawa]] |> as.numeric()
   }
   f2s <- .calculateR2(R2full, R2preds)
   out <- list(variable       = preds,
               f2Local        = f2s,
-              reduced_models = reduced_models)
+              reducedModels = reducedModels)
   class(out) <- "f2Local"
   return(out)
 }
@@ -201,23 +201,18 @@ print.f2Local <- function(x, ...){
 #' @importFrom stats formula reformulate
 #' @importFrom lme4 findbars
 .generateNullModel <- function(object) {
-  original_formula <- formula(object)
-  response_var <- as.character(attr(terms(object), "variables")[[2]])
-  random_effects <- findbars(original_formula)
-  if (length(random_effects) == 0) {
+  originalFormula <- formula(object)
+  responseVar <- as.character(attr(terms(object), "variables")[[2]])
+  randomEffects <- findbars(originalFormula)
+  if (length(randomEffects) == 0) {
     stop("No random effects found in the model!")
   }
-  random_effects_text <- sapply(random_effects, function(re) paste0("(", deparse(re), ")"))
-  null_formula <- reformulate(termlabels = random_effects_text, response = response_var)
-  null_model <- update(object, formula = null_formula)
-  return(null_model)
+  randomEffectsText <- sapply(randomEffects, function(re) paste0("(", deparse(re), ")"))
+  nullFormula <- reformulate(termlabels = randomEffectsText, response = responseVar)
+  nullModel <- update(object, formula = nullFormula)
+  return(nullModel)
 }
 
 .calculateR2 <- function(R2full, R2reduced){
   return((R2full - R2reduced) / (1 - R2full))
 }
-
-# To do:
-#
-# * camel casing
-
