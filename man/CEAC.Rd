@@ -2,7 +2,7 @@
 % Please edit documentation in R/CEAC.R
 \name{CEAC}
 \alias{CEAC}
-\title{Create data for cost-effectiveness acceptability curve}
+\title{Cost-effectiveness acceptability curve}
 \usage{
 CEAC(x)
 }
@@ -14,6 +14,8 @@ CEAC(x)
 }
 \description{
 Create data for cost-effectiveness acceptability curve
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 CEA(gnomes, insulationMethod, Costs, diffHATS, 1000, "acorns") |>

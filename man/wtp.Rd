@@ -20,6 +20,8 @@ to the given parameter in the bootstrap samples, the result is interpolated.
 \description{
 Get the probability of being cost-effective given a certain
 cost-effectiveness threshold, and vice versa.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 One of the two parameters \code{threshold} and \code{probability}

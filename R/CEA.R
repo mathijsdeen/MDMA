@@ -1,5 +1,7 @@
 #' @title Cost-effectiveness analysis
+#' @description Perform a cost-effectiveness analysis. Or a cost-utility analysis.
 #'
+#' `r lifecycle::badge("stable")`
 #' @param data a \code{data.frame} with rows representing observations in for
 #'     example a cost-effectiveness trial.
 #' @param group group variable in \code{data}. Should contain two levels.

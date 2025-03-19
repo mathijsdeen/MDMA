@@ -37,7 +37,9 @@ and the ICER as a ratio of these two.}
 a Unicode hex.}
 }
 \description{
-Cost-effectiveness analysis
+Perform a cost-effectiveness analysis. Or a cost-utility analysis.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 CEA(gnomes, insulationMethod, Costs, diffHATS, 5000, "acorns") |>

@@ -1,5 +1,7 @@
-#' Create data for cost-effectiveness acceptability curve
+#' @title Cost-effectiveness acceptability curve
+#' @description Create data for cost-effectiveness acceptability curve
 #'
+#' `r lifecycle::badge("stable")`
 #' @param x object of class \code{CEA}
 #'
 #' @return \code{CEAC} returns data that can be plotted using \code{plot.CEAC}.

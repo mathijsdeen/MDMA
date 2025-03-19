@@ -1,7 +1,8 @@
-#' Probe willingness to pay
+#' @title Probe willingness to pay
 #' @description Get the probability of being cost-effective given a certain
 #' cost-effectiveness threshold, and vice versa.
 #'
+#' `r lifecycle::badge("stable")`
 #' @param x object of class \code{CEAC}
 #' @param threshold cost-effectiveness threshold
 #' @param probability probability of being cost-effective
