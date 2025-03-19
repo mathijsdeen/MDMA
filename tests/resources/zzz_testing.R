@@ -197,7 +197,6 @@ attr(terms(m.full), which = "term.labels")
 ## binary logistic
 library(performance)
 m <- glm(vs ~  cyl*wt + mpg, data = mtcars, family = "binomial")
-r2_coxsnell(m)
 f2Local(m, method = "coxsnell")
 ffff<- f2Local(m, method = "efron")
 ffff$reduced_models
@@ -257,3 +256,25 @@ ff$reducedModels
 m.vglm_Good_Mate <- update(m.vglm, as.formula(paste(". ~ . -", "Good_Mate")))
 summary(m.vglm)
 (R2.vglm(m.vglm) - R2.vglm(m.vglm_Good_Mate)) / (1 - R2.vglm(m.vglm))
+
+pneumo <- transform(pneumo, let = log(exposure.time))
+model3 <- vglm(cbind(normal, mild, severe) ~ let, multinomial, pneumo)
+f2Local(model3)
+model.3b <- update(model.3, formula = cbind(normal, mild, severe) ~ 1)
+f2Local(model3)
+
+library(performance)
+rr <- r2_mcfadden(model.3)
+(r2_mcfadden(model.3)$R2 - r2_mcfadden(update(model.3, formula = cbind(normal, mild, severe) ~ 1))$R2) / (1 - r2_mcfadden(update(model.3, formula = cbind(normal, mild, severe) ~ 1))$R2)
+View(pneumo)
+
+currency2unicode(c("euro", "dollar", "rupee", "gbp"))
+currency2unicode(c("euro", "dollar", "usd"), type = "code") |> cat()
+
+vals <- matrix(rnorm(24, 15, 10), ncol = 2)
+m(vals)
+
+lm.1 <- lm(mpg ~ hp + wt, data = mtcars)
+lm.2 <- lm(mpg ~ hp * wt, data = mtcars)
+lm.3 <- lm(mpg ~ hp * wt + gear, data = mtcars)
+pMM(lm.1, lm.2, lm.3)
