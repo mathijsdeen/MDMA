@@ -2,25 +2,27 @@
 % Please edit documentation in R/currency2unicode.R
 \name{currency2unicode}
 \alias{currency2unicode}
-\title{Retrieve Unicode character for a currency}
+\title{Currency unicode character}
 \usage{
-currency2unicode(currency, ...)
+currency2unicode(currency, type = c("character", "code"))
 }
 \arguments{
-\item{currency}{character string. Supported values are accounting sign, afghani,
+\item{currency}{character string or a vector of strings. Supported values are accounting sign, afghani,
 armenian dram, austral, baht, bitcoin, boliviano, cent, cedi, currency, dollar,
 dong, drachma, dutch guilder, euro, franc, georgian lari, german penny, hryvnia,
 indian rupee, iranian rial, kip, lari, lira, livre tournois, manat, mark, new shekel,
 pakistani rupee, peso, pound, quetzal, real, rial, ruble, shekel, spesmilo, syrian pound,
 tenge, tugrik, turkish lira, won, yen, yuan.}
 
-\item{...}{other options (for troubleshooting only).}
+\item{type}{indicate whether the Unicode \code{character}(s) or the Unicode \code{code}(s) should be returned.}
 }
 \value{
 \code{currency2unicode} the unicode character for a given currency.
 }
 \description{
 Retrieve Unicode character for a currency
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 The input is evaluated case insensitive. In case the input is not supported, the function
