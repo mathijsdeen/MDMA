@@ -1,0 +1,8 @@
+Changes in Version 2.0.0 (2025-03-19)
+=====================================
+
+  * Added functionality for cost-effectiveness analyses (CEA, CEAC, wtp).
+
+  * Convert currency names to Unicode character or Unicode code using currency2unicode.
+
+  * Calculate local f^2 values for (generalized) linear (mixed) models using f2Local.
