@@ -1,4 +1,4 @@
-#' @title Check model for influential cases
+#' @title Checks for linear model
 #' @description Perform checks for a linear model regarding influential cases and collinearity
 #'     numerically and graphically.
 #'

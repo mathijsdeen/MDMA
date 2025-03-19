@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{check}
 \alias{check}
-\title{Check model for influential cases}
+\title{Checks for linear model}
 \usage{
 check(object, ...)
 }
