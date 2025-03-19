@@ -70,10 +70,20 @@ response is not binary.
 model1 <- lm(mpg ~ cyl + wt*drat, data = mtcars)
 f2Local(model1)
 
+# generalized linear model (glm)
+model2 <- glm(vs ~  cyl*wt + mpg, data = mtcars, family = "binomial")
+f2Local(model2, method = "coxsnell")
+
+# generalized linear model (vglm)
+if(require(VGAM)){
+  pneumo <- transform(pneumo, let = log(exposure.time))
+  model3 <- vglm(cbind(normal, mild, severe) ~ let, multinomial, pneumo)
+  f2Local(model3)
+}
 # generalized linear mixed model
 if(require(ClusterBootstrap) & require(glmmTMB)){
-  model2 <- glmmTMB(pos ~ treat*time + (1 + time | id), data = medication)
-  f2Local(model2)
+  model4 <- glmmTMB(pos ~ treat*time + (1 + time | id), data = medication)
+  f2Local(model4)
 }
 
 }
