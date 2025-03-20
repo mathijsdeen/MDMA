@@ -12,8 +12,24 @@
 
 .warningDeprecated <- function(newFunc, version){
   oldFunc <- as.character(sys.call(sys.parent()))[[1]] # qui vocavit me
-  warningMessage <- paste0(oldFunc, "() was deprecated in MDMA ", version,
-                           " and will be removed in a future release. Please use ",
-                           newFunc, "() instead.")
-  warning(warningMessage, call. = FALSE)
+
+  # Should probably write a wrapper for text color and styling.
+  red        <- "\033[31m"
+  green      <- "\033[32m"
+  blue       <- "\033[34m"
+  reset_col  <- "\033[0m"
+  bold       <- "\033[1m"
+  reset_bold <- "\033[22m"
+  italic     <- "\033[3m"
+  reset_itlc <- "\033[23m"
+  underline  <- "\033[4m"
+  reset_ul   <- "\033[24m"
+
+  warningMessage <- paste0(red, bold, "Warning:", reset_bold, " ",
+                           oldFunc, "() was ", italic, "deprecated", reset_itlc, " in ",
+                           blue, "MDMA ", version, red,
+                           " and will be ", underline, "removed", reset_ul,
+                           " in a future release. \nPlease use ",
+                           green, newFunc, "()", red, " instead.", reset_col)
+  message(warningMessage)
 }
