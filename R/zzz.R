@@ -1,3 +1,8 @@
+#' @useDynLib MDMA, .registration = TRUE
+#' @importFrom Rcpp evalCpp
+NULL
+
+
 .onAttach <- function(libname, pkgname) {
 
   # Check if MDMA was installed from CRAN. If not: caveat.
