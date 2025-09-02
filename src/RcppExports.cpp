@@ -10,20 +10,46 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// mC1
-NumericMatrix mC1(NumericMatrix x);
-RcppExport SEXP _MDMA_mC1(SEXP xSEXP) {
+// divMod
+DataFrame divMod(NumericVector x, NumericVector d, bool shortForm);
+RcppExport SEXP _MDMA_divMod(SEXP xSEXP, SEXP dSEXP, SEXP shortFormSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type d(dSEXP);
+    Rcpp::traits::input_parameter< bool >::type shortForm(shortFormSEXP);
+    rcpp_result_gen = Rcpp::wrap(divMod(x, d, shortForm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mC_matrix
+NumericMatrix mC_matrix(NumericMatrix x);
+RcppExport SEXP _MDMA_mC_matrix(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(mC1(x));
+    rcpp_result_gen = Rcpp::wrap(mC_matrix(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mC_vector
+NumericVector mC_vector(NumericVector x);
+RcppExport SEXP _MDMA_mC_vector(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(mC_vector(x));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_MDMA_mC1", (DL_FUNC) &_MDMA_mC1, 1},
+    {"_MDMA_divMod", (DL_FUNC) &_MDMA_divMod, 3},
+    {"_MDMA_mC_matrix", (DL_FUNC) &_MDMA_mC_matrix, 1},
+    {"_MDMA_mC_vector", (DL_FUNC) &_MDMA_mC_vector, 1},
     {NULL, NULL, 0}
 };
 
