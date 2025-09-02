@@ -66,7 +66,6 @@ DataFrame divMod(NumericVector x, NumericVector d, bool shortForm = true) {
                                                        _["d"] = dout,
                                                        _["quotient"] = q,
                                                        _["remainder"] = r);
-  outFrame.attr("row.names") = IntegerVector::create(NA_INTEGER, -n);
   outFrame.attr("class") = CharacterVector::create("divMod", "data.frame");
   return outFrame;
 }
