@@ -14,9 +14,12 @@ divMod(x, d, shortForm = TRUE)
 \item{shortForm}{boolean (defaults to \code{TRUE}), indicating whether the output should contain \code{x} and \code{d}}
 }
 \value{
-\code{divMod} returns an object of class \code{divMod} (which is essentially a \code{data.frame}.)
-Dependent upon the argument \code{shortForm}, the values of \code{x} and \code{d} are returned as well, which is especially useful when
-recycling is used when \code{x} and \code{d} are of different length.
+\code{divMod} returns an object of class \code{divMod} (which is essentially a \code{data.frame}). It consists of the following values/variables:
+\item{quotient}{The quotient of the integer division \code{x}/\code{n}}
+\item{remainder}{The remainder of the division above}
+Dependent upon the argument \code{shortForm}, the following values are present:
+\item{x}{The argument \code{x}}
+\item{d}{The argument \code{d}. Returning \code{x} and \code{d} is especially useful with the use of recycling (see example below).}
 }
 \description{
 Return quotient and remainder from integer division of the input.
