@@ -4,10 +4,12 @@
 \alias{m}
 \title{Mean center}
 \usage{
-m(x)
+m(x, ...)
 }
 \arguments{
 \item{x}{a numeric matrix or vector.}
+
+\item{...}{additional arguments for methods.}
 }
 \value{
 \code{m} returns a mean centered version of \code{x}. If \code{x} is
@@ -26,8 +28,10 @@ using \code{(g)lm}), but you dont want the long form \code{scale(x, scale=FALSE)
 to clutter up the rownames of the parameter estimates or the model anova.
 }
 \examples{
+\dontrun{
 vals <- matrix(rnorm(24, 15, 10), ncol = 2)
 m(vals)
+}
 }
 \author{
 Mathijs Deen

@@ -3,6 +3,7 @@
 #'
 #' `r lifecycle::badge("stable")`
 #' @param x a numeric matrix or vector.
+#' @param ... additional arguments for methods.
 #' @return \code{m} returns a mean centered version of \code{x}. If \code{x} is
 #'     a matrix, the matrix dimensions are preserved.
 #' @details This function resembles \code{base::scale.default}, with the \code{scale}
@@ -10,19 +11,33 @@
 #'     especially useful when you want to mean center variables in an analysis (e.g.,
 #'     using \code{(g)lm}), but you dont want the long form \code{scale(x, scale=FALSE)}
 #'     to clutter up the rownames of the parameter estimates or the model anova.
-#' @examples
+#' @examples\dontrun{
 #' vals <- matrix(rnorm(24, 15, 10), ncol = 2)
 #' m(vals)
+#' }
 #' @author Mathijs Deen
 #' @export
 
-m <- function(x){
-  x <- as.matrix(x)
-  center <- colMeans(x     = x,
-                     na.rm = TRUE)
-  x <- sweep(x            = x,
-             MARGIN       = 2L,
-             STATS        = center,
-             check.margin = FALSE)
-  return(x)
+# m <- function(x){
+#   x <- as.matrix(x)
+#   center <- colMeans(x     = x,
+#                      na.rm = TRUE)
+#   x <- sweep(x            = x,
+#              MARGIN       = 2L,
+#              STATS        = center,
+#              check.margin = FALSE)
+#   return(x)
+# }
+m <- function(x, ...) UseMethod("m")
+
+#' @method m matrix
+#' @export
+m.matrix <- function(x, ...){
+  .meanCenter_Matrix(x)
+}
+
+#' @method m numeric
+#' @export
+m.numeric <- function(x, ...){
+  .meanCenter_Vector(x)
 }

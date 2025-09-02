@@ -1,8 +1,8 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-// [[Rcpp::export]]
-NumericMatrix mC1_matrix(NumericMatrix x) {
+// [[Rcpp::export(name = ".meanCenter_Matrix")]]
+NumericMatrix mC_matrix(NumericMatrix x) {
   const R_xlen_t nrow = x.nrow();
   const R_xlen_t ncol = x.ncol();
   NumericMatrix out = clone(x);
@@ -16,13 +16,24 @@ NumericMatrix mC1_matrix(NumericMatrix x) {
   return out;
 }
 
-// [[Rcpp::export]]
-NumericVector mC1_vector(NumericVector x) {
+// [[Rcpp::export(name = ".meanCenter_Vector")]]
+NumericVector mC_vector(NumericVector x) {
   NumericVector out = clone(x);
-  const double mu = mean(out, true);
-
-  double* p = out.begint();
+  double s = 0.0;
+  R_xlen_t cnt = 0;
   const R_xlen_t n = out.size();
+
+  for(R_xlen_t i = 0; i < n; ++i) {
+    double v = out[i];
+    if(!NumericVector::is_na(v)) {
+      s += v;
+      ++cnt;
+    }
+  }
+
+  const double mu = (cnt > 0) ? (s / cnt) : R_NaN;
+
+  double* p = out.begin();
   for (R_xlen_t i = 0; i < n; ++i) p[i] -= mu;
 
   return out;
