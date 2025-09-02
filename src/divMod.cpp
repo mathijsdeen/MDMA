@@ -41,7 +41,7 @@ DataFrame divMod(NumericVector x, NumericVector d, bool shortForm = true) {
 
   int n = std::max(nx, nd);
   if((n % nx) || (n % nd))
-    warning("longer object lengthis not a multiple of shorter object length");
+    warning("longer object length is not a multiple of shorter object length");
 
   IntegerVector q(n);
   NumericVector r(n), xout(n), dout(n);
