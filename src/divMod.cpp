@@ -22,12 +22,10 @@ using namespace Rcpp;
 //' divMod(x = c(15,23,42,58), d = c(4,7), shortForm = FALSE) #recycling
 //'
 //' hh_mm_ss <- function(milliseconds) {
-//'   seconds <- divMod(round(milliseconds/1000),60)
-//'   minutes <- divMod(seconds$quotient, 60)
-//'   hours   <- minutes$quotient
-//'   seconds <- seconds$remainder
-//'   minutes <- minutes$remainder
-//'   sprintf("%02d:%02d:%02d", hours,minutes,seconds)
+//'   out <- list("hours", "minutes", "seconds")
+//'   out[c("minutes","seconds")] <- divMod(round(milliseconds/1000),60)
+//'   out[c("hours","minutes")] <- divMod(out$minutes, 60)
+//'   with(out, sprintf("%02d:%02d:%02d", hours,minutes,seconds))
 //' }
 //'
 //' hh_mm_ss(1000)
