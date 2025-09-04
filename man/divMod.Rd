@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{divMod}
 \alias{divMod}
-\title{divmod}
+\title{divMod}
 \usage{
 divMod(x, d, shortForm = TRUE)
 }
@@ -22,24 +22,28 @@ Dependent upon the argument \code{shortForm}, the following values are present:
 \item{d}{The argument \code{d}. Returning \code{x} and \code{d} is especially useful with the use of recycling (see example below).}
 }
 \description{
-Return quotient and remainder from integer division of the input.
+Retrieve quotient and remainder from Euclidian division.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+}
+\details{
+\code{divMod} is equivalent to Python's \code{divmod}, but extends it with support for vector recycling.
 }
 \examples{
 divMod(x = 15, d = 4)
 divMod(x = c(15,23,42,58), d = c(4,7), shortForm = FALSE) #recycling
 
-hh_mm_ss <- function(milliseconds) {
-  out <- list("hours", "minutes", "seconds")
-  out[c("minutes","seconds")] <- divMod(round(milliseconds/1000),60)
+renderTime <- function(milliseconds) {
+  out <- list("hours"=NA, "minutes"=NA, "seconds"=NA, "milliseconds"=NA)
+  out[c("seconds","milliseconds")] <- divMod(milliseconds,1000)
+  out[c("minutes","seconds")] <- divMod(out$seconds,60)
   out[c("hours","minutes")] <- divMod(out$minutes, 60)
-  with(out, sprintf("\%02d:\%02d:\%02d", hours,minutes,seconds))
-}
+  with(out, sprintf("\%02d:\%02d:\%02d.\%03d", hours,minutes,seconds,milliseconds))
+  }
 
-hh_mm_ss(1000)
-hh_mm_ss(68000)
-hh_mm_ss(3680000)
+renderTime(1000)
+renderTime(68000)
+renderTime(3683121)
 
 }
 \author{
