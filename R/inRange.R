@@ -1,9 +1,9 @@
 #' @title inRange
 #' @description Return which values are in a certain range
 #' \code{%inRange%} indicates which values are in a certain range, including the
-#'     boundaries of the range.
+#'     boundaries of the range (i.e., a closed interval).
 #'
-#' `r lifecycle::badge("experimental")`
+#' `r lifecycle::badge("stable")`
 #' @param lhs numeric vector.
 #' @param rhs numeric vector of length 2 with the bounds of the range.
 #'
@@ -20,20 +20,16 @@
 #' @author Mathijs Deen
 #' @seealso \code{\link{\%withinRange\%}}
 `%inRange%` <- function(lhs, rhs){
-  #unstable when values in lhs are non integer
-  #this needs some checking, possibly a rewrite in C?
-  if(any(round(lhs) != lhs))
-    warning("%inRange% currently unstable when lhs contains non integers", call.=FALSE)
-  lhs >= min(rhs) & lhs <= max(rhs)+.Machine$double.eps
+  lhs >= min(rhs) & lhs <= max(rhs)
 }
 
 #' @title withinRange
 #' @description Return which values are within a certain range
 #'
 #' \code{%withinRange%} indicates which values are in a certain range, excluding
-#'     the boundaries of the range.
+#'     the boundaries of the range (i.e., an open interval).
 #'
-#' `r lifecycle::badge("experimental")`
+#' `r lifecycle::badge("stable")`
 #' @param lhs numeric vector.
 #' @param rhs numeric vector of length 2 with the bounds of the range.
 #'
