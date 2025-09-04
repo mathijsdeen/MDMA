@@ -18,7 +18,7 @@
 #'       'a %inRange% r' = a %inRange% r,
 #'       'a %withinRange% r' = a %withinRange% r)
 #' @author Mathijs Deen
-#' @seealso [`%withinRange%`]
+#' @seealso \code{\link{\%withinRange\%}}
 `%inRange%` <- function(lhs, rhs){
   #unstable when values in lhs are non integer
   #this needs some checking, possibly a rewrite in C?
@@ -48,7 +48,7 @@
 #'       'a %inRange% r' = a %inRange% r,
 #'       'a %withinRange% r' = a %withinRange% r)
 #' @author Mathijs Deen
-#' @seealso [`%inRange%`]
+#' @seealso \code{\link{\%inRange\%}}
 `%withinRange%` <- function(lhs, rhs){
   lhs > min(rhs) & lhs < max(rhs)
 }
