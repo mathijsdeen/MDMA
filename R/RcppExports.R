@@ -38,6 +38,28 @@ divMod <- function(x, d, shortForm = TRUE) {
     .Call(`_MDMA_divMod`, x, d, shortForm)
 }
 
+#' @title Latin square
+#' @description Create a latin square of size \eqn{n \times n}.
+#'
+#' `r lifecycle::badge("stable")`
+#' @param n positive integer
+#' @return \code{latinSquare} returns a matrix of size \eqn{n \times n} that is a latin square.
+#' @details The latin square that is produced is a (generalized) latin square that is also balanced for first order carryover effects.
+#' @author Mathijs Deen
+#' @export
+#' @examples
+#' # 5 x 5 latin square
+#' latinSquare(5)
+#' @references
+#' * Williams, E.J. (1949). Experimental designs balanced for the estimation of residual effects of treatments. *Australian Journal of Scientific Research 2, 2*, 149-168. https://doi.org/10.1071/CH9490149
+latinSquare <- function(n) {
+    .Call(`_MDMA_latinSquare`, n)
+}
+
+firstRow <- function(n) {
+    .Call(`_MDMA_firstRow`, n)
+}
+
 .meanCenter_Matrix <- function(x) {
     .Call(`_MDMA_mC_matrix`, x)
 }

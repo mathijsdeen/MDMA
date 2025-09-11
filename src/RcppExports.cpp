@@ -23,6 +23,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// latinSquare
+IntegerMatrix latinSquare(const R_len_t n);
+RcppExport SEXP _MDMA_latinSquare(SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const R_len_t >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(latinSquare(n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// firstRow
+IntegerVector firstRow(R_len_t n);
+RcppExport SEXP _MDMA_firstRow(SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< R_len_t >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(firstRow(n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // mC_matrix
 NumericMatrix mC_matrix(NumericMatrix x);
 RcppExport SEXP _MDMA_mC_matrix(SEXP xSEXP) {
@@ -48,6 +70,8 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_MDMA_divMod", (DL_FUNC) &_MDMA_divMod, 3},
+    {"_MDMA_latinSquare", (DL_FUNC) &_MDMA_latinSquare, 1},
+    {"_MDMA_firstRow", (DL_FUNC) &_MDMA_firstRow, 1},
     {"_MDMA_mC_matrix", (DL_FUNC) &_MDMA_mC_matrix, 1},
     {"_MDMA_mC_vector", (DL_FUNC) &_MDMA_mC_vector, 1},
     {NULL, NULL, 0}
