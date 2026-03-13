@@ -1,3 +1,12 @@
+Changes in Version 2.1.0 (2026-03-13)
+=====================================
+
+  * Added functions:
+    * divMod to retrieve division quotient and remainder
+    * latinSquare to calculate a latin square,
+    * namedVector to vectorize a matrix whilst combining row and column names
+    * rrr for reduced rank regression
+
 Changes in Version 2.0.0 (2025-03-19)
 =====================================
 
