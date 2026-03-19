@@ -12,11 +12,29 @@
 #' @param data A data frame containing the variables referenced in
 #'   \code{formula}.
 #' @param rank Integer. The desired rank of the coefficient matrix. Must
-#'   satisfy \code{1 <= rank <= min(ncol(Y), ncol(X))}.
+#'   satisfy \code{1 <= rank <= min(ncol(Y), ncol(X))}. Not used when
+#'   \code{method = "model.frame"}.
 #' @param na.action A function specifying how missing values are handled.
 #'   Defaults to \code{\link[stats]{na.omit}}.
+#' @param model Logical. If \code{TRUE} (default), the model frame is stored
+#'   in the returned object. Always included when \code{method = "model.frame"}.
+#' @param x Logical. If \code{TRUE}, the design matrix \code{X} is stored in
+#'   the returned object. Defaults to \code{FALSE}.
+#' @param y Logical. If \code{TRUE}, the response matrix \code{Y} is stored in
+#'   the returned object. Defaults to \code{FALSE}.
+#' @param method Character string specifying the fitting method. Use
+#'   \code{"rrr.fit"} (default) for standard reduced rank regression, or
+#'   \code{"model.frame"} to return the model frame (and optionally \code{X}
+#'   and \code{Y}) without fitting.
 #'
-#' @return An object of class \code{"rrr"}, which is a list containing:
+#' @return If \code{method = "model.frame"}, a list containing:
+#'   \describe{
+#'     \item{model}{The \code{\link[stats]{model.frame}} constructed from
+#'       \code{formula}, \code{data}, and \code{na.action}.}
+#'     \item{x}{The design matrix. Only present if \code{x = TRUE}.}
+#'     \item{y}{The response matrix. Only present if \code{y = TRUE}.}
+#'   }
+#'   Otherwise, an object of class \code{"rrr"}, which is a list containing:
 #'   \describe{
 #'     \item{BA}{A \code{p x q} numeric matrix of rank \code{rank}, where
 #'       \code{p} is the number of predictors (including any intercept) and
@@ -27,6 +45,9 @@
 #'     \item{na.action}{The \code{na.action} attribute of the model frame,
 #'       indicating which observations were removed due to missing values.
 #'       \code{NULL} if no observations were removed.}
+#'     \item{model}{The model frame. Only present if \code{model = TRUE}.}
+#'     \item{x}{The design matrix. Only present if \code{x = TRUE}.}
+#'     \item{y}{The response matrix. Only present if \code{y = TRUE}.}
 #'   }
 #'
 #' @details
@@ -72,19 +93,40 @@
 #'            data = dat,
 #'            rank = 2)
 #' fit$BA
+#'
+#' # Inspect the model frame without fitting
+#' rrr(cbind(y1, y2, y3) ~ x1 + x2 + x3 + x4 + x5,
+#'     data = dat,
+#'     method = "model.frame")
 #' @importFrom stats model.frame model.matrix model.response
 #' @author Mathijs Deen
 #' @export
-rrr <- function(formula, data, rank, na.action = na.omit){
+rrr <- function(formula, data, rank, na.action = na.omit,
+                model = TRUE, x = FALSE, y = FALSE,
+                method = "rrr.fit"){
   mf <- model.frame(formula = formula,
                     data = data,
                     na.action = na.action)
+
   mt <- attr(mf, "terms")
   Y <- as.matrix(model.response(mf))
   X <- model.matrix(mt, mf)
+
+  if (identical(method, "model.frame")) {
+    out <- list(model = mf)
+    if (x) out$x <- X
+    if (y) out$y <- Y
+    return(out)
+  }
+
   fit <- rrr.fit(X, Y, rank)
-  fit$terms <- mt
+
+  fit$terms     <- mt
   fit$na.action <- attr(mf, "na.action")
+  if (model) fit$model <- mf
+  if (x)     fit$x     <- X
+  if (y)     fit$y     <- Y
+
   class(fit) <- "rrr"
   return(fit)
 }
