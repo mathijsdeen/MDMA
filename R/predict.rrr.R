@@ -68,7 +68,7 @@ predict.rrr <- function(object, newdata = NULL, ...){
       stop("No data available for prediction. Refit with model = TRUE or x = TRUE.")
     }
   } else {
-    tt <- delete.response(object$terms)
+    tt    <- delete.response(object$terms)
     X_new <- model.matrix(tt, model.frame(tt, newdata))
   }
   return(X_new %*% object$BA)

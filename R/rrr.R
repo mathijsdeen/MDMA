@@ -109,13 +109,13 @@ rrr <- function(formula, data, rank, na.action = na.omit,
                     na.action = na.action)
 
   mt <- attr(mf, "terms")
-  Y <- as.matrix(model.response(mf))
-  X <- model.matrix(mt, mf)
+  Y  <- as.matrix(model.response(mf))
+  X  <- model.matrix(mt, mf)
 
-  if (identical(method, "model.frame")) {
+  if(identical(method, "model.frame")){
     out <- list(model = mf)
-    if (x) out$x <- X
-    if (y) out$y <- Y
+    if(x) out$x <- X
+    if(y) out$y <- Y
     return(out)
   }
 
@@ -123,9 +123,9 @@ rrr <- function(formula, data, rank, na.action = na.omit,
 
   fit$terms     <- mt
   fit$na.action <- attr(mf, "na.action")
-  if (model) fit$model <- mf
-  if (x)     fit$x     <- X
-  if (y)     fit$y     <- Y
+  if(model) fit$model <- mf
+  if(x)     fit$x     <- X
+  if(y)     fit$y     <- Y
 
   class(fit) <- "rrr"
   return(fit)
@@ -172,18 +172,19 @@ rrr <- function(formula, data, rank, na.action = na.omit,
 #' @author Mathijs Deen
 #' @export
 rrr.fit <- function(X, Y, m){
-  n <- nrow(Y)
+  n       <- nrow(Y)
   eig.out <- eigen(t(X) %*% X)
-  S <- eig.out$vectors %*% diag(sqrt(eig.out$values)) %*% t(eig.out$vectors)
-  Z <- X %*% solve(S)
-  C <- t(Z) %*% Y
-  C.svd <- svd(C)
-  U <- C.svd$u[, 1:m, drop=FALSE]
-  D <- diag(C.svd$d[1:m], nrow=m, ncol=m)
-  V <- C.svd$v[, 1:m, drop = FALSE]
-  B <- solve(S) %*% U * sqrt(n)
-  A <- V %*% D / sqrt(n)
-  BA <- B %*% t(A)
+  S       <- eig.out$vectors %*% diag(sqrt(eig.out$values)) %*% t(eig.out$vectors)
+  Z       <- X %*% solve(S)
+  C       <- t(Z) %*% Y
+  C.svd   <- svd(C)
+  U       <- C.svd$u[, 1:m, drop=FALSE]
+  D       <- diag(C.svd$d[1:m], nrow=m, ncol=m)
+  V       <- C.svd$v[, 1:m, drop = FALSE]
+  B       <- solve(S) %*% U * sqrt(n)
+  A       <- V %*% D / sqrt(n)
+  BA      <- B %*% t(A)
+
   colnames(BA) <- colnames(Y)
   rownames(BA) <- colnames(X)
   return(list(BA = BA))
