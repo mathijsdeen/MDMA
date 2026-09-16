@@ -55,69 +55,75 @@ import(MASS)
 importFrom(Rcpp,evalCpp)
 importFrom(car,vif)
 importFrom(grDevices,rgb)
-importFrom(graphics,abline)
-importFrom(graphics,arrows)
-importFrom(graphics,legend)
-importFrom(graphics,lines)
-importFrom(graphics,mtext)
-importFrom(graphics,par)
-importFrom(graphics,points)
-importFrom(graphics,polygon)
-importFrom(graphics,text)
+importFrom(graphics,
+  abline,
+  arrows,
+  legend,
+  lines,
+  mtext,
+  par,
+  points,
+  polygon,
+  text
+)
 importFrom(lme4,findbars)
 importFrom(methods,hasArg)
-importFrom(performance,r2_bayes)
-importFrom(performance,r2_coxsnell)
-importFrom(performance,r2_efron)
-importFrom(performance,r2_ferrari)
-importFrom(performance,r2_kullback)
-importFrom(performance,r2_loo)
-importFrom(performance,r2_loo_posterior)
-importFrom(performance,r2_mcfadden)
-importFrom(performance,r2_mckelvey)
-importFrom(performance,r2_mlm)
-importFrom(performance,r2_nagelkerke)
-importFrom(performance,r2_nakagawa)
-importFrom(performance,r2_posterior)
-importFrom(performance,r2_somers)
-importFrom(performance,r2_tjur)
-importFrom(performance,r2_xu)
-importFrom(performance,r2_zeroinflated)
-importFrom(stats,BIC)
-importFrom(stats,approx)
-importFrom(stats,as.formula)
-importFrom(stats,coef)
-importFrom(stats,complete.cases)
-importFrom(stats,confint)
-importFrom(stats,cor)
-importFrom(stats,dchisq)
-importFrom(stats,delete.response)
-importFrom(stats,density)
-importFrom(stats,df)
-importFrom(stats,dnorm)
-importFrom(stats,dt)
-importFrom(stats,formula)
-importFrom(stats,hatvalues)
-importFrom(stats,influence.measures)
-importFrom(stats,logLik)
-importFrom(stats,model.frame)
-importFrom(stats,model.matrix)
-importFrom(stats,model.response)
-importFrom(stats,na.omit)
-importFrom(stats,nobs)
-importFrom(stats,predict)
-importFrom(stats,pt)
-importFrom(stats,qnorm)
-importFrom(stats,qt)
-importFrom(stats,quantile)
-importFrom(stats,reformulate)
-importFrom(stats,rstandard)
-importFrom(stats,sd)
-importFrom(stats,setNames)
-importFrom(stats,summary.glm)
-importFrom(stats,terms)
-importFrom(stats,update)
-importFrom(stats,var)
-importFrom(stats,vcov)
-importFrom(stats,wilcox.test)
+importFrom(performance,
+  r2_bayes,
+  r2_coxsnell,
+  r2_efron,
+  r2_ferrari,
+  r2_kullback,
+  r2_loo,
+  r2_loo_posterior,
+  r2_mcfadden,
+  r2_mckelvey,
+  r2_mlm,
+  r2_nagelkerke,
+  r2_nakagawa,
+  r2_posterior,
+  r2_somers,
+  r2_tjur,
+  r2_xu,
+  r2_zeroinflated
+)
+importFrom(stats,
+  BIC,
+  approx,
+  as.formula,
+  coef,
+  complete.cases,
+  confint,
+  cor,
+  dchisq,
+  delete.response,
+  density,
+  df,
+  dnorm,
+  dt,
+  formula,
+  hatvalues,
+  influence.measures,
+  logLik,
+  model.frame,
+  model.matrix,
+  model.response,
+  na.omit,
+  nobs,
+  predict,
+  pt,
+  qnorm,
+  qt,
+  quantile,
+  reformulate,
+  rstandard,
+  sd,
+  setNames,
+  summary.glm,
+  terms,
+  update,
+  var,
+  vcov,
+  wilcox.test
+)
 useDynLib(MDMA, .registration = TRUE)
