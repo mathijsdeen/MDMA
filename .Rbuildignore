@@ -3,3 +3,5 @@
 testscript.R
 todo.md
 LICENSE
+^\.positai$
+^\.claude$
