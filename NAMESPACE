@@ -66,7 +66,6 @@ importFrom(graphics,
   polygon,
   text
 )
-importFrom(lme4,findbars)
 importFrom(methods,hasArg)
 importFrom(performance,
   r2_bayes,
@@ -87,6 +86,7 @@ importFrom(performance,
   r2_xu,
   r2_zeroinflated
 )
+importFrom(reformulas,findbars)
 importFrom(stats,
   BIC,
   approx,

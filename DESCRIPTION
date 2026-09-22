@@ -14,7 +14,7 @@ Imports:
     car,
     graphics,
     grDevices,
-    lme4,
+    reformulas,
     MASS,
     methods,
     performance,

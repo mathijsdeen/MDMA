@@ -209,7 +209,7 @@ print.f2Local <- function(x, ...){
 }
 
 #' @importFrom stats formula reformulate
-#' @importFrom lme4 findbars
+#' @importFrom reformulas findbars
 .generateNullModel <- function(object) {
   originalFormula <- formula(object)
   responseVar <- as.character(attr(terms(object), "variables")[[2]])
